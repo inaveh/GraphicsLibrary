@@ -24,6 +24,16 @@ public class Point3D {
     }
 
     /**
+     * Point3D constructor receiving a 3 value x,y,z
+     * @param _x point on x scale
+     * @param _y point on y scale
+     * @param _z point on z scale
+     */
+    public Point3D(double _x,double _y,double _z) {
+        this(new Coordinate(_x), new Coordinate(_y), new Coordinate(_z));
+    }
+
+    /**
      * copy constructor
      * @param other is full Point
      */
@@ -32,6 +42,7 @@ public class Point3D {
         this._y = other._y;
         this._z = other._z;
     }
+
 
     /**
      * Point3D value getter
@@ -74,5 +85,27 @@ public class Point3D {
                 ", _y=" + _y +
                 ", _z=" + _z +
                 '}';
+    }
+
+    /**
+     * this func subtracting a point from another point
+     * @param vertex one point
+     * @return the result as vector
+     */
+    public Vector subtract(Point3D vertex) {
+        return new Vector(vertex._x._coord - this._x._coord,
+                vertex._y._coord - this._y._coord,
+                vertex._z._coord - this._z._coord);
+    }
+
+    /**
+     * this func adding vector to point
+     * @param vector one vector
+     * @return the result as point
+     */
+    public Point3D add(Vector vector) {
+        return new Point3D(vector._head._x._coord + this._x._coord,
+                vector._head._y._coord + this._y._coord,
+                vector._head._z._coord + this._z._coord);
     }
 }
