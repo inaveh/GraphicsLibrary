@@ -12,7 +12,15 @@ public class Point3D {
     Coordinate _z;
 
     /**
-     * Point3D constructor receiving a 3 value
+     * const Zero point
+     */
+    public final static Point3D ZERO = new Point3D(0, 0, 0);
+
+
+    /****************************** Constructors *****************************/
+
+    /**
+     * Point3D constructor receiving a 3 coordinate
      * @param _x point on x scale
      * @param _y point on y scale
      * @param _z point on z scale
@@ -24,7 +32,7 @@ public class Point3D {
     }
 
     /**
-     * Point3D constructor receiving a 3 value x,y,z
+     * Point3D constructor receiving a 3 doubles value x,y,z
      * @param _x point on x scale
      * @param _y point on y scale
      * @param _z point on z scale
@@ -42,7 +50,6 @@ public class Point3D {
         this._y = other._y;
         this._z = other._z;
     }
-
 
     /**
      * Point3D value getter
@@ -68,24 +75,7 @@ public class Point3D {
         return new Coordinate(_z);
     }
 
-    /****************************** Override ****************/
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof Ray)) return false;
-        Point3D point3D= (Point3D) o;
-        return _x.equals(point3D._x)&&_y.equals(point3D._y)&&_z.equals(point3D._z);
-    }
-
-    @Override
-    public String toString() {
-        return "Point3D{" +
-                "_x=" + _x +
-                ", _y=" + _y +
-                ", _z=" + _z +
-                '}';
-    }
+    /****************************** Functions *****************************/
 
     /**
      * this func subtracting a point from another point
@@ -104,8 +94,46 @@ public class Point3D {
      * @return the result as point
      */
     public Point3D add(Vector vector) {
-        return new Point3D(vector._head._x._coord + this._x._coord,
-                vector._head._y._coord + this._y._coord,
-                vector._head._z._coord + this._z._coord);
+        return new Point3D(this._x._coord + vector._head._x._coord,
+                this._y._coord + vector._head._y._coord,
+                this._z._coord+vector._head._z._coord);
     }
+
+    /**
+     * this func calculate the pow of distance from p2p
+     * @param point3D
+     * @return
+     */
+    public double distanceSquared(Point3D point3D){
+        Vector vector = new Vector(this.subtract(point3D));
+        double x2 = vector._head._x._coord * vector._head._x._coord;
+        double y2 = vector._head._y._coord * vector._head._y._coord;
+        double z2 = vector._head._z._coord * vector._head._z._coord;
+        double result = x2+ y2+ z2;
+        return result;
+    }
+
+
+    //result = Math.sqrt(result);
+
+    /****************************** Override *****************************/
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof Ray)) return false;
+        Point3D point3D= (Point3D) o;
+        return _x.equals(point3D._x)&&_y.equals(point3D._y)&&_z.equals(point3D._z);
+    }
+
+    @Override
+    public String toString() {
+        return "Point3D{" +
+                "_x=" + _x +
+                ", _y=" + _y +
+                ", _z=" + _z +
+                '}';
+    }
+
+
 }
