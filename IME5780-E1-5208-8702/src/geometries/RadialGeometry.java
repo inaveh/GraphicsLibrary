@@ -2,15 +2,17 @@ package geometries;
 
 import primitives.Point3D;
 import primitives.Vector;
-
+/**
+ *
+ */
 public abstract class RadialGeometry implements Geometry {
     Double _radius;
 
-    /****************************** Constructors *****************************/
+    // ****************************** Constructors *****************************/
 
     /**
      * RadialGeometry constructor
-     * @param _radius
+     * @param _radius radius
      */
     public RadialGeometry (Double _radius){
         this._radius = _radius;
@@ -18,7 +20,7 @@ public abstract class RadialGeometry implements Geometry {
 
     /**
      * RadialGeometry copy constructor
-     * @param other
+     * @param other radialGeometry instance
      */
     public RadialGeometry (RadialGeometry other){
         this._radius = other._radius;

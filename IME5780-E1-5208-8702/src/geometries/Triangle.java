@@ -1,25 +1,25 @@
 package geometries;
 
 import primitives.Point3D;
-
+/**
+ *
+ */
 public class Triangle extends Polygon {
 
-    /****************************** Constructors *****************************/
+    // ****************************** Constructors *****************************/
 
     /**
      * Triangle constructor by super
-     * @param a
-     * @param b
-     * @param c
+     * @param a one point
+     * @param b one point
+     * @param c one point
      */
     public Triangle(Point3D a, Point3D b, Point3D c){
         super(a, b, c);
     }
 
-    /**
-     *
-     * @return
-     */
+    /****************************** Overrides *****************************/
+
     @Override
     public String toString() {
         return super.toString();

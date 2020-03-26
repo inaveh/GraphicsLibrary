@@ -1,7 +1,9 @@
 package primitives;
 
 import java.util.Objects;
-
+/**
+ *
+ */
 public class Ray {
     Point3D _p0;
     Vector _dir;
@@ -18,7 +20,7 @@ public class Ray {
 
     /**
      * Ray copy constructor
-     * @param other
+     * @param other Ray
      */
     public Ray(Ray other) {
         this._p0 = other._p0;

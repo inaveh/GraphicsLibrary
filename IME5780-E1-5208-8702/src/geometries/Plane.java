@@ -2,19 +2,20 @@ package geometries;
 
 import primitives.Point3D;
 import primitives.Vector;
-
+/**
+ *
+ */
 public class Plane implements Geometry {
     Point3D _p;
     Vector _normal;
 
-    /****************************** Constructors *****************************/
+    // ****************************** Constructors *****************************/
 
     /**
      * Plane constructor by 3 Points
-     *
-     * @param point3D
-     * @param vec1
-     * @param vec2
+     * @param point3D point
+     * @param vec1 vector
+     * @param vec2 vector
      */
     public Plane(Point3D point3D, Point3D vec1, Point3D vec2) {
         this._normal = null;
@@ -24,19 +25,18 @@ public class Plane implements Geometry {
     /**
      * Plane constructor by normal and point
      *
-     * @param point3D
-     * @param _normal
+     * @param point3D point
+     * @param _normal normal
      */
     public Plane(Point3D point3D, Vector _normal) {
         this._p = point3D;
         this._normal = _normal;
     }
 
-    /****************************** Getters *****************************/
+    // ****************************** Getters *****************************/
 
     /**
      * Plane getter
-     *
      * @return point
      */
     public Point3D get_p() {

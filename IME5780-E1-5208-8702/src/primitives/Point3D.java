@@ -17,7 +17,7 @@ public class Point3D {
     public final static Point3D ZERO = new Point3D(0, 0, 0);
 
 
-    /****************************** Constructors *****************************/
+    // ****************************** Constructors *****************************/
 
     /**
      * Point3D constructor receiving a 3 coordinate
@@ -80,7 +80,7 @@ public class Point3D {
         return new Coordinate(_z);
     }
 
-    /****************************** Functions *****************************/
+    // ****************************** Functions *****************************/
 
     /**
      * this func subtracting a point from another point
@@ -89,9 +89,11 @@ public class Point3D {
      * @return the result as vector
      */
     public Vector subtract(Point3D vertex) {
-        return new Vector(vertex._x._coord - this._x._coord,
-                vertex._y._coord - this._y._coord,
-                vertex._z._coord - this._z._coord);
+        return new Vector(
+                this._x._coord - vertex._x._coord,
+                this._y._coord - vertex._y._coord,
+                this._z._coord - vertex._z._coord
+        );
     }
 
     /**
@@ -108,21 +110,20 @@ public class Point3D {
 
     /**
      * this func calculate the pow of distance from p2p
-     * @param point3D
-     * @return the pow of distance from p2p
+     * @param point3D point
+     * @return  the pow of distance from p2p
      */
     public double distanceSquared(Point3D point3D) {
         Vector vector = new Vector(this.subtract(point3D));
         double x2 = vector._head._x._coord * vector._head._x._coord;
         double y2 = vector._head._y._coord * vector._head._y._coord;
         double z2 = vector._head._z._coord * vector._head._z._coord;
-        double result = x2 + y2 + z2;
-        return result;
+        return x2 + y2 + z2;
     }
 
     /**
      * this func calculate the distance from p2p
-     * @param point3D
+     * @param point3D point
      * @return the distance from p2p
      */
     public double distance(Point3D point3D) {
@@ -135,9 +136,11 @@ public class Point3D {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof Ray)) return false;
+        if (!(o instanceof Point3D)) return false;
         Point3D point3D = (Point3D) o;
-        return _x.equals(point3D._x) && _y.equals(point3D._y) && _z.equals(point3D._z);
+        return _x.equals(point3D._x)
+                && _y.equals(point3D._y)
+                && _z.equals(point3D._z);
     }
 
     @Override
