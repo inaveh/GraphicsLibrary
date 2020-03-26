@@ -186,8 +186,8 @@ public class Vector {
      *
      * @return head point
      */
-    public Point3D get_head() {
-        return _head;
+    public Point3D getHead() {
+        return  _head;
     }
 
     /****************************** Override ****************/
