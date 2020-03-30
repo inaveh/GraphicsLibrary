@@ -2,12 +2,13 @@ package geometries;
 
 import primitives.Point3D;
 /**
- *
+ *class Triangle for describe triangle object
+ * this class extends from Polygon
+ * @author AhronS, IsraelN
  */
 public class Triangle extends Polygon {
 
     // ****************************** Constructors *****************************/
-
     /**
      * Triangle constructor by super
      * @param a one point
@@ -19,11 +20,8 @@ public class Triangle extends Polygon {
     }
 
     /****************************** Overrides *****************************/
-
     @Override
     public String toString() {
         return super.toString();
     }
-
-
 }

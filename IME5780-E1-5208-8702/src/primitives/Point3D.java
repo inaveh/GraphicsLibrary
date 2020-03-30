@@ -1,24 +1,21 @@
 package primitives;
 
-import java.util.Objects;
-
 /**
  * class Point3D for describe coordinates
+ *  @author AhronS, IsraelN
  */
 
 public class Point3D {
-    Coordinate _x;
-    Coordinate _y;
-    Coordinate _z;
+    private Coordinate coordinate;
+    private Coordinate _y;
+    private Coordinate _z;
 
     /**
      * const Zero point
      */
     public final static Point3D ZERO = new Point3D(0, 0, 0);
 
-
     // ****************************** Constructors *****************************/
-
     /**
      * Point3D constructor receiving a 3 coordinate
      * @param _x point on x scale
@@ -26,7 +23,7 @@ public class Point3D {
      * @param _z point on z scale
      */
     public Point3D(Coordinate _x, Coordinate _y, Coordinate _z) {
-        this._x = _x;
+        this.coordinate = _x;
         this._y = _y;
         this._z = _z;
     }
@@ -44,53 +41,47 @@ public class Point3D {
 
     /**
      * copy constructor
-     *
      * @param other is full Point
      */
     public Point3D(Point3D other) {
-        this._x = other._x;
+        this.coordinate = other.coordinate;
         this._y = other._y;
         this._z = other._z;
     }
 
     /**
      * Point3D value getter
-     *
      * @return x value
      */
-    public Coordinate get_x() {
-        return new Coordinate(_x);
+    public Coordinate getX() {
+        return coordinate;
     }
 
     /**
      * Point3D value getter
-     *
      * @return y value
      */
-    public Coordinate get_y() {
-        return new Coordinate(_y);
+    public Coordinate getY() {
+        return _y;
     }
 
     /**
      * Point3D value getter
-     *
      * @return z value
      */
-    public Coordinate get_z() {
-        return new Coordinate(_z);
+    public Coordinate getZ() {
+        return _z;
     }
 
     // ****************************** Functions *****************************/
-
     /**
      * this func subtracting a point from another point
-     *
      * @param vertex one point
      * @return the result as vector
      */
     public Vector subtract(Point3D vertex) {
         return new Vector(
-                this._x._coord - vertex._x._coord,
+                this.coordinate._coord - vertex.coordinate._coord,
                 this._y._coord - vertex._y._coord,
                 this._z._coord - vertex._z._coord
         );
@@ -98,14 +89,14 @@ public class Point3D {
 
     /**
      * this func adding vector to point
-     *
      * @param vector one vector
      * @return the result as point
      */
     public Point3D add(Vector vector) {
-        return new Point3D(this._x._coord + vector._head._x._coord,
-                this._y._coord + vector._head._y._coord,
-                this._z._coord + vector._head._z._coord);
+        return new Point3D(
+                this.coordinate._coord + vector.getHead().coordinate._coord,
+                this._y._coord + vector.getHead()._y._coord,
+                this._z._coord + vector.getHead()._z._coord);
     }
 
     /**
@@ -115,9 +106,9 @@ public class Point3D {
      */
     public double distanceSquared(Point3D point3D) {
         Vector vector = new Vector(this.subtract(point3D));
-        double x2 = vector._head._x._coord * vector._head._x._coord;
-        double y2 = vector._head._y._coord * vector._head._y._coord;
-        double z2 = vector._head._z._coord * vector._head._z._coord;
+        double x2 = vector.getHead().coordinate._coord * vector.getHead().coordinate._coord;
+        double y2 = vector.getHead()._y._coord * vector.getHead()._y._coord;
+        double z2 = vector.getHead()._z._coord * vector.getHead()._z._coord;
         return x2 + y2 + z2;
     }
 
@@ -130,7 +121,6 @@ public class Point3D {
         return Math.sqrt(this.distanceSquared(point3D));
     }
 
-
     /****************************** Override *****************************/
     @Override
     public boolean equals(Object o) {
@@ -138,7 +128,7 @@ public class Point3D {
         if (o == null) return false;
         if (!(o instanceof Point3D)) return false;
         Point3D point3D = (Point3D) o;
-        return _x.equals(point3D._x)
+        return coordinate.equals(point3D.coordinate)
                 && _y.equals(point3D._y)
                 && _z.equals(point3D._z);
     }
@@ -146,7 +136,7 @@ public class Point3D {
     @Override
     public String toString() {
         return "Point3D{" +
-                "_x=" + _x +
+                "_x=" + coordinate +
                 ", _y=" + _y +
                 ", _z=" + _z +
                 '}';

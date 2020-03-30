@@ -1,15 +1,12 @@
 package primitives;
 
-import java.security.InvalidParameterException;
-import java.util.Objects;
-
 /**
+ * class Vector for describe a vector when the begin point is 0,0,0
  *
+ * @author AhronS, IsraelN
  */
 public class Vector {
-    Point3D _head;
-
-    //   public final static Vector ZERO = new Vector(0.0, 0.0, 0.0);
+    private Point3D _head;
 
     // ****************************** Constructors *****************************/
 
@@ -37,10 +34,7 @@ public class Vector {
         Point3D point3D = new Point3D(_x, _y, _z);
         if (point3D.equals(Point3D.ZERO))
             throw new IllegalArgumentException("vector can not be 0");
-        else {
-            this._head = point3D;
-
-        }
+        this._head = point3D;
     }
 
     /**
@@ -73,9 +67,9 @@ public class Vector {
      */
     public Vector add(Vector vector) {
         return new Vector(
-                this._head._x._coord + vector._head._x._coord,
-                this._head._y._coord + vector._head._y._coord,
-                this._head._z._coord + vector._head._z._coord);
+                this._head.getX()._coord + vector._head.getX()._coord,
+                this._head.getY()._coord + vector._head.getY()._coord,
+                this._head.getZ()._coord + vector._head.getZ()._coord);
     }
 
     /**
@@ -86,9 +80,9 @@ public class Vector {
      */
     public Vector subtract(Vector vector) {
         return new Vector(
-                this._head.get_x()._coord - vector._head.get_x()._coord,
-                this._head.get_y()._coord - vector._head.get_y()._coord,
-                this._head.get_z()._coord - vector._head.get_z()._coord);
+                this._head.getX()._coord - vector._head.getX()._coord,
+                this._head.getY()._coord - vector._head.getY()._coord,
+                this._head.getZ()._coord - vector._head.getZ()._coord);
     }
 
     /**
@@ -99,9 +93,9 @@ public class Vector {
      */
     public Vector scale(double scalar) {
         return new Vector(
-                this._head.get_x()._coord * scalar,
-                this._head.get_y()._coord * scalar,
-                this._head.get_z()._coord * scalar);
+                this._head.getX()._coord * scalar,
+                this._head.getY()._coord * scalar,
+                this._head.getZ()._coord * scalar);
     }
 
     /**
@@ -111,9 +105,9 @@ public class Vector {
      * @return the result as double
      */
     public double dotProduct(Vector vector) {
-        return vector._head.get_x()._coord * this._head.get_x()._coord +
-                vector._head.get_y()._coord * this._head.get_y()._coord +
-                vector._head.get_z()._coord * this._head.get_z()._coord;
+        return vector._head.getX()._coord * this._head.getX()._coord +
+                vector._head.getY()._coord * this._head.getY()._coord +
+                vector._head.getZ()._coord * this._head.getZ()._coord;
     }
 
     /**
@@ -123,12 +117,12 @@ public class Vector {
      * @return the result as vector
      */
     public Vector crossProduct(Vector vector) {
-        double u1 = this._head._x._coord;
-        double u2 = this._head._y._coord;
-        double u3 = this._head._z._coord;
-        double v1 = vector._head._x._coord;
-        double v2 = vector._head._y._coord;
-        double v3 = vector._head._z._coord;
+        double u1 = this._head.getX()._coord;
+        double u2 = this._head.getY()._coord;
+        double u3 = this._head.getZ()._coord;
+        double v1 = vector._head.getX()._coord;
+        double v2 = vector._head.getY()._coord;
+        double v3 = vector._head.getZ()._coord;
         return (new Vector(
                 u2 * v3 - u3 * v2,
                 u3 * v1 - u1 * v3,
@@ -142,9 +136,9 @@ public class Vector {
      * @return the pow vector length
      */
     public Double lengthSquared() {
-        return (this._head.get_x()._coord * this._head.get_x()._coord +
-                this._head.get_y()._coord * this._head.get_y()._coord +
-                this._head.get_z()._coord * this._head.get_z()._coord);
+        return (this._head.getX()._coord * this._head.getX()._coord +
+                this._head.getY()._coord * this._head.getY()._coord +
+                this._head.getZ()._coord * this._head.getZ()._coord);
     }
 
     /**
@@ -162,12 +156,10 @@ public class Vector {
      * @return the normal vector
      */
     public Vector normalize() {
-        //Point3D point3D = new Point3D(this._head._x._coord.scale(this.length())._head._x,
-        //     this.scale(this.length())._head._y,
-        //   this.scale(this.length())._head._z
-        //);
-        Vector vector = new Vector(this.scale(1 / this.length()));
-        this._head = vector._head;
+        Point3D point3D = new Point3D( this._head.getX()._coord / this.length(),
+                this._head.getY()._coord / this.length(),
+                this._head.getZ()._coord / this.length());
+        this._head = point3D;
         return this;
     }
 
@@ -177,9 +169,9 @@ public class Vector {
      * @return the normal vector
      */
     public Vector normalized() {
-        return new Vector(this.scale(this.length())._head);
+        Vector vector = new Vector(this);
+        return vector.normalize();
     }
-
 
     /**
      * vector get value
@@ -187,7 +179,7 @@ public class Vector {
      * @return head point
      */
     public Point3D getHead() {
-        return  _head;
+        return _head;
     }
 
     /****************************** Override ****************/
@@ -199,9 +191,9 @@ public class Vector {
         if (!(o instanceof Vector))
             return false;
         Vector vector = (Vector) o;
-        return this._head._x.equals(vector._head._x)
-                && this._head._y.equals(vector._head._y)
-                && this._head._z.equals(vector._head._z);
+        return this._head.getX().equals(vector._head.getX())
+                && this._head.getY().equals(vector._head.getY())
+                && this._head.getZ().equals(vector._head.getZ());
     }
 
     @Override

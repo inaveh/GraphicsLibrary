@@ -4,14 +4,18 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
+ * class Cylinder for describe Cylinder object
+ * this class extends from RadialGeometry
  *
+ * @author AhronS, IsraelN
  */
 public class Cylinder extends RadialGeometry {
-    Double _height;
+    private Double _height;
 
     // ****************************** Constructors *****************************/
     /**
      * Cylinder constructor
+     *
      * @param _radius radius
      * @param _height the height
      */
@@ -22,9 +26,10 @@ public class Cylinder extends RadialGeometry {
 
     /**
      * Cylinder getter
+     *
      * @return height
      */
-    public Double get_height() {
+    public Double getHeight() {
         return _height;
     }
 
