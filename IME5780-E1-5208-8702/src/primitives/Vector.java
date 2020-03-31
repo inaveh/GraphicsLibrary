@@ -1,5 +1,7 @@
 package primitives;
 
+import java.security.InvalidParameterException;
+
 /**
  * class Vector for describe a vector when the begin point is 0,0,0
  *
@@ -123,6 +125,8 @@ public class Vector {
         double v1 = vector._head.getX()._coord;
         double v2 = vector._head.getY()._coord;
         double v3 = vector._head.getZ()._coord;
+        if(u2 * v3 - u3 * v2 == 0 && u3 * v1 - u1 * v3 == 0  && u1 * v2 - u2 * v1 == 0)
+            throw new IllegalArgumentException("the operation crossProduct() for parallel vectors impossible");
         return (new Vector(
                 u2 * v3 - u3 * v2,
                 u3 * v1 - u1 * v3,
