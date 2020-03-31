@@ -21,7 +21,7 @@ public class Vector {
      */
     public Vector(Coordinate _x, Coordinate _y, Coordinate _z) {
         if (new Point3D(_x, _y, _z).equals(Point3D.ZERO))
-            throw new NullPointerException("vector can not be 0");
+            throw new IllegalArgumentException("vector can not be 0");
         this._head = new Point3D(_x, _y, _z);
     }
 
@@ -160,6 +160,8 @@ public class Vector {
      * @return the normal vector
      */
     public Vector normalize() {
+        if(this._head.equals(Point3D.ZERO))
+            throw new ArithmeticException("ERROR can't normalize (0,0,0) vector");
         Point3D point3D = new Point3D( this._head.getX()._coord / this.length(),
                 this._head.getY()._coord / this.length(),
                 this._head.getZ()._coord / this.length());
@@ -173,6 +175,8 @@ public class Vector {
      * @return the normal vector
      */
     public Vector normalized() {
+        if (this._head.equals(Point3D.ZERO))
+            throw new ArithmeticException("ERROR can't normalize (0,0,0) vector");
         Vector vector = new Vector(this);
         return vector.normalize();
     }
@@ -195,9 +199,7 @@ public class Vector {
         if (!(o instanceof Vector))
             return false;
         Vector vector = (Vector) o;
-        return this._head.getX().equals(vector._head.getX())
-                && this._head.getY().equals(vector._head.getY())
-                && this._head.getZ().equals(vector._head.getZ());
+        return this._head.equals(vector._head);
     }
 
     @Override
