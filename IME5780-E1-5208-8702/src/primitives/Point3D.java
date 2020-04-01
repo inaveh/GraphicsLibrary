@@ -17,7 +17,6 @@ public class Point3D {
     public final static Point3D ZERO = new Point3D(0, 0, 0);
 
     // ****************************** Constructors *****************************/
-
     /**
      * Point3D constructor receiving a 3 coordinate
      *
@@ -81,7 +80,6 @@ public class Point3D {
     }
 
     // ****************************** Functions *****************************/
-
     /**
      * this func subtracting a point from another point
      *

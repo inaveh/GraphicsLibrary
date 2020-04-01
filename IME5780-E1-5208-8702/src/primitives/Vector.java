@@ -125,8 +125,6 @@ public class Vector {
         double v1 = vector._head.getX()._coord;
         double v2 = vector._head.getY()._coord;
         double v3 = vector._head.getZ()._coord;
-        if(u2 * v3 - u3 * v2 == 0 && u3 * v1 - u1 * v3 == 0  && u1 * v2 - u2 * v1 == 0)
-            throw new IllegalArgumentException("the operation crossProduct() for parallel vectors impossible");
         return (new Vector(
                 u2 * v3 - u3 * v2,
                 u3 * v1 - u1 * v3,
@@ -160,9 +158,7 @@ public class Vector {
      * @return the normal vector
      */
     public Vector normalize() {
-        if(this._head.equals(Point3D.ZERO))
-            throw new ArithmeticException("ERROR can't normalize (0,0,0) vector");
-        Point3D point3D = new Point3D( this._head.getX()._coord / this.length(),
+        Point3D point3D = new Point3D(this._head.getX()._coord / this.length(),
                 this._head.getY()._coord / this.length(),
                 this._head.getZ()._coord / this.length());
         this._head = point3D;
@@ -175,8 +171,6 @@ public class Vector {
      * @return the normal vector
      */
     public Vector normalized() {
-        if (this._head.equals(Point3D.ZERO))
-            throw new ArithmeticException("ERROR can't normalize (0,0,0) vector");
         Vector vector = new Vector(this);
         return vector.normalize();
     }

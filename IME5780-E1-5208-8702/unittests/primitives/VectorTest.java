@@ -18,17 +18,10 @@ public class VectorTest {
      */
     @Test
     public void testAdd() {
+
         // ============ Equivalence Partitions Tests ==============
         // Test that add() return the correct answer
-        assertEquals("ERROR: Point + Vector does not work correctly", new Vector(2,2,2), new Vector(1,1,1).add(new Vector(1,1,1)));
-        // =============== Boundary Values Tests ==================
-        // Test that try to add vector to his negative and create vector zero
-        try {
-          new Vector(1, 2, 3).add(new Vector(-1, -2, -3));
-            fail("Add v plus -v must throw exception");
-        } catch (IllegalArgumentException e) {
-            assertTrue(true);
-        }
+        assertEquals("ERROR: Point + Vector does not work correctly", new Vector(2, 2, 2), new Vector(1, 1, 1).add(new Vector(1, 1, 1)));
     }
 
     /**
@@ -38,29 +31,26 @@ public class VectorTest {
     public void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
         // Test that sub() return the correct answer
-        assertEquals("ERROR: Vector - Vector does not work correctly", new Vector(2,2,2), new Vector(3,4,5).subtract(new Vector(1,2,3)));
-        // =============== Boundary Values Tests ==================
-        // Test that try to sub vector from himself and create vector zero
-        try {
-            new Vector(1, 2, 3).subtract(new Vector(1, 2, 3));
-            fail("Sub v from v must throw exception");
-        } catch (IllegalArgumentException e) {
-            assertTrue(true);
-        }
+        assertEquals("ERROR: Vector - Vector does not work correctly", new Vector(2, 2, 2), new Vector(3, 4, 5).subtract(new Vector(1, 2, 3)));
     }
 
 
     /**
-     *  Test method for {@link primitives.Vector#scale(double)}.
+     * Test method for {@link primitives.Vector#scale(double)}.
      */
     @Test
     public void testScale() {
         // ============ Equivalence Partitions Tests ==============
         // Test that dotProduct() return the correct answer
-
+        assertEquals("ERROR: Scalar * Vector does not work correctly", new Vector(5, 5, 5), new Vector(1, 1, 1).scale(5));
         // =============== Boundary Values Tests ==================
-        // Test
-
+        // Test tha vector mul with scalar 0
+        try {
+            new Vector(2, 2, 2).scale(0);
+            fail("ERROR: create zero vector need to throw exception");
+        } catch (IllegalArgumentException e) {
+            assertTrue(true);
+        }
     }
 
     /**
@@ -69,18 +59,20 @@ public class VectorTest {
     @Test
     public void testDotProduct() {
         Vector v1 = new Vector(1, 2, 3);
-        Vector v2 = new Vector(3, 2, 1);
+        Vector v2 = new Vector(-1, -2, -3);
+        Vector v3 = new Vector(0, 3, -2);
+
         // ============ Equivalence Partitions Tests ==============
         // Test that dotProduct() return the correct answer
-        assertEquals("dotProduct() wrong value", 10d, v1.dotProduct(v2), 0.00001);
+        assertEquals("dotProduct() wrong value", 14d, v1.dotProduct(v1), 0.00001);
+
+        //Test of vectors with obtuse angle and vectors on same line
+        assertEquals("dotProduct() wrong result when work with obtuse angle", -14d, v1.dotProduct(v2), 0.0001);
 
         // =============== Boundary Values Tests ==================
-        // Test
-        Vector v3 = new Vector(0, 3, -2);
+        // Test of 2 orthogonal vectors
         assertEquals("dotProduct() for orthogonal vectors is not zero", 0d, v1.dotProduct(v3), 0.00001);
-
     }
-
 
     /**
      * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}.
@@ -115,22 +107,9 @@ public class VectorTest {
      */
     @Test
     public void testLengthSquared() {
-        Vector v1 = new Vector(1, 2, 3);
         //============ Equivalence Partitions Tests ==============
         // test LengthSquared() return the correct answer
         assertEquals("ERROR: lengthSquared() wrong value", 14d, new Vector(1, 2, 3).lengthSquared(), 0.0001);
-
-        //=============== Boundary Values Tests ==================
-        //Test that lengthSquared a zero vector
-        try {
-            Vector vec = new Vector(0.0, 0.0, 0.0);
-            vec.lengthSquared();
-            fail("ERROR can't calculate length sqr of vector 0");
-        } catch (IllegalArgumentException e) { //to catch for create zero vector
-            assertTrue(true);
-        } catch (ArithmeticException e) { //to catch normalize zero vector
-            assertTrue(true);
-        }
     }
 
     /**
@@ -138,15 +117,9 @@ public class VectorTest {
      */
     @Test
     public void testLength() {
-        Vector v1 = new Vector(1, 2, 3);
         //============ Equivalence Partitions Tests ==============
         //Test that length() return the correct answer
         assertEquals("length() wrong value", 5d, new Vector(0, 3, 4).length(), 0.00001);
-
-        //        if (!isZero(new Vector(0, 3, 4).length() - 5))
-        //            out.println("ERROR: length() wrong value");
-        //=============== Boundary Values Tests ==================
-
     }
 
     /**
@@ -161,8 +134,7 @@ public class VectorTest {
 
         //============ Equivalence Partitions Tests ==============
         //Test that the normalize() func changes the orig vec
-        if (vCopy != vCopyNormalize)
-            fail("ERROR: normalize() function creates a new vector");
+        assertEquals("ERROR: normalize() function creates a new vector", vCopyNormalize, vCopy);
 
         //Test that normalize() really normalized the vector
         if (!isZero(vCopyNormalize.length() - 1) || (!v.normalize().equals(unit)))
@@ -170,15 +142,17 @@ public class VectorTest {
 
         //=============== Boundary Values Tests ==================
         //Test that normalize a zero vector
+        /*
         try {
-            Vector vec = new Vector(0.0, 0.0, 0.0);
-            vec.normalize();
+            new Vector(0,0,0).normalize();
             fail("ERROR can't normalize vector 0");
         } catch (IllegalArgumentException e) { //to catch for create zero vector
             assertTrue(true);
         } catch (ArithmeticException e) { //to catch normalize zero vector
             assertTrue(true);
         }
+
+         */
     }
 
     /**
@@ -189,22 +163,7 @@ public class VectorTest {
         Vector v = new Vector(1, 2, 3);
 
         //============ Equivalence Partitions Tests ==============
-
         //Test that the normalized() func not changes the orig vec
-        Vector u = v.normalized();
-        if (u == v)
-            fail("ERROR: normalized() function does not create a new vector");
-
-        //=============== Boundary Values Tests ==================
-        //Test that normalized a zero vector
-        try {
-            Vector vec = new Vector(0.0, 0.0, 0.0);
-            vec.normalized();
-            fail("ERROR can't normalize vector 0");
-        } catch (IllegalArgumentException e) { //to catch for create zero vector
-            assertTrue(true);
-        } catch (ArithmeticException e) { //to catch normalize zero vector
-            assertTrue(true);
-        }
+        assertNotEquals("ERROR: normalized() function does not create a new vector", new Vector(v.normalized()),v);
     }
 }
