@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
 
 /**
@@ -9,7 +10,7 @@ import primitives.Vector;
  *
  * @author AhronS, IsraelN
  */
-public class Cylinder extends RadialGeometry {
+public class Cylinder extends Tube {
     private Double _height;
 
     // ****************************** Constructors *****************************/
@@ -19,8 +20,8 @@ public class Cylinder extends RadialGeometry {
      * @param _radius radius
      * @param _height the height
      */
-    public Cylinder(Double _radius, Double _height) {
-        super(_radius);
+    public Cylinder(Double _radius, Ray _ray, Double _height) {
+        super(_radius, _ray);
         this._height = _height;
     }
 
