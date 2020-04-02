@@ -15,9 +15,7 @@ public class TriangleTest {
      */
     @Test
     public void testGetNormal() {
-        Point3D p1 = new Point3D(1, 1, 1);
-        Point3D p2 = new Point3D(2, 2, 2); //p2-p1=1,1,1
-        Point3D p3 = new Point3D(1, 1, 1); //
+
         // ============ Equivalence Partitions Tests ==============
         // Test that get normal of triangle return the correct answer
         Triangle pl = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));

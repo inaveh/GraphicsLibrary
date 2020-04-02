@@ -38,7 +38,10 @@ public class Tube extends RadialGeometry {
     /****************************** Overrides *****************************/
     @Override
     public Vector getNormal(Point3D point3D) {
-        return null;
+        Vector n = new Vector(point3D.subtract(this._axisRay.getP0()));
+        Double t = n.dotProduct(this._axisRay.getDir());
+        Vector shadow= this._axisRay.getDir().scale(t);
+        return n.subtract(shadow).normalize().scale(-1);
     }
 
     @Override
