@@ -20,6 +20,8 @@ public class TriangleTest {
         Point3D p3 = new Point3D(1, 1, 1); //
         // ============ Equivalence Partitions Tests ==============
         // Test that get normal of triangle return the correct answer
-        assertEquals("Bad normal to triangle", new Vector(2, 3, 12).normalize(), new Triangle(p1, p2, p3).getNormal(p1));
+        Triangle pl = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
+        double sqrt3 = Math.sqrt(1d / 3);
+        assertEquals("Bad normal to triangle", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(1, 0, 1)));
     }
 }

@@ -16,15 +16,17 @@ public class Plane implements Geometry {
     // ****************************** Constructors *****************************/
 
     /**
-     * Plane constructor by 3 Points
+     *  Plane constructor by 3 Points
      *
-     * @param point3D point
-     * @param vec1    vector
-     * @param vec2    vector
+     * @param p1 point3d
+     * @param p2 point3d
+     * @param p3 point3d
      */
-    public Plane(Point3D point3D, Point3D vec1, Point3D vec2) {
-        this._normal = null;
-        this._p = point3D;
+    public Plane(Point3D p1, Point3D p2, Point3D p3) {
+        Vector vec1 = new Vector(p2.subtract(p1));
+        Vector vec2 = new Vector(p3.subtract(p1));
+        this._normal = vec1.crossProduct(vec2).normalize();
+        this._p = p1;
     }
 
     /**

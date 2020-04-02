@@ -1,6 +1,8 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Vector;
+
 /**
  *class Triangle for describe triangle object
  * this class extends from Polygon
@@ -23,5 +25,10 @@ public class Triangle extends Polygon {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public Vector getNormal(Point3D point) {
+        return super.getNormal(point);
     }
 }
