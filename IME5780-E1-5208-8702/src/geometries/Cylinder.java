@@ -2,7 +2,11 @@ package geometries;
 
 import primitives.Point3D;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
+
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * class Cylinder for describe Cylinder object
@@ -37,7 +41,21 @@ public class Cylinder extends Tube {
     /****************************** Overrides *****************************/
     @Override
     public Vector getNormal(Point3D point3D) {
-        return null;
+        // check if its same points p0==p
+        Vector n;
+        Double t;
+        try {
+            n = new Vector(point3D.subtract(this.getAxisRay().getP0())); //red vec
+            t = n.dotProduct(this.getAxisRay().getDir());
+        } catch (IllegalArgumentException e) {
+            return this.getAxisRay().getDir();
+        }
+        // check if p at the base, orthogonal, so the normal is the vec of the ray
+        if (t == 0 || isZero(this._height - t))
+            return this.getAxisRay().getDir();
+        // else, it's like Tube
+        Vector shadow = new Vector(this.getAxisRay().getDir().scale(t));
+        return n.subtract(shadow).normalize();
     }
 
     @Override

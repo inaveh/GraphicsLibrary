@@ -4,6 +4,8 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import static primitives.Util.isZero;
+
 /**
  * class Tube for describe tube object
  * this class extends from RadialGeometry
@@ -38,10 +40,12 @@ public class Tube extends RadialGeometry {
     /****************************** Overrides *****************************/
     @Override
     public Vector getNormal(Point3D point3D) {
-        Vector n = new Vector(point3D.subtract(this._axisRay.getP0()));
-        Double t = n.dotProduct(this._axisRay.getDir());
-        Vector shadow= this._axisRay.getDir().scale(t);
-        return n.subtract(shadow).normalize().scale(-1);
+        Vector n = new Vector(point3D.subtract(this._axisRay.getP0())); //red vec
+        Double t = n.dotProduct(this._axisRay.getDir()); //red * v
+        Vector shadow = new Vector(this._axisRay.getDir());
+        if (!isZero(t))
+            shadow = this._axisRay.getDir().scale(t); // large v
+        return n.subtract(shadow).normalize(); //.scale(-1); ///shd-n
     }
 
     @Override
