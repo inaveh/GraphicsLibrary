@@ -28,6 +28,8 @@ public class Tube extends RadialGeometry {
         this._axisRay = _axisRay;
     }
 
+    // ****************************** Getters *****************************/
+
     /**
      * Tube getter
      *
@@ -37,15 +39,15 @@ public class Tube extends RadialGeometry {
         return _axisRay;
     }
 
-    /****************************** Overrides *****************************/
+    // ****************************** Overrides *****************************/
     @Override
     public Vector getNormal(Point3D point3D) {
-        Vector n = new Vector(point3D.subtract(this._axisRay.getP0())); //red vec
-        Double t = n.dotProduct(this._axisRay.getDir()); //red * v
+        Vector n = new Vector(point3D.subtract(this._axisRay.getP0()));
+        Double t = n.dotProduct(this._axisRay.getDir());
         Vector shadow = new Vector(this._axisRay.getDir());
         if (!isZero(t))
-            shadow = this._axisRay.getDir().scale(t); // large v
-        return n.subtract(shadow).normalize(); //.scale(-1); ///shd-n
+            shadow = this._axisRay.getDir().scale(t);
+        return n.subtract(shadow).normalize();
     }
 
     @Override

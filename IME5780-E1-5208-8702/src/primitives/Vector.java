@@ -1,7 +1,5 @@
 package primitives;
 
-import java.security.InvalidParameterException;
-
 /**
  * class Vector for describe a vector when the begin point is 0,0,0
  *
@@ -57,6 +55,17 @@ public class Vector {
      */
     public Vector(Vector other) {
         this._head = other._head;
+    }
+
+    // ****************************** Getters *****************************/
+
+    /**
+     * vector get value
+     *
+     * @return head point
+     */
+    public Point3D getHead() {
+        return _head;
     }
 
     // ****************************** Functions *****************************/
@@ -175,16 +184,7 @@ public class Vector {
         return vector.normalize();
     }
 
-    /**
-     * vector get value
-     *
-     * @return head point
-     */
-    public Point3D getHead() {
-        return _head;
-    }
-
-    /****************************** Override ****************/
+    // ****************************** Overrides *****************************/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

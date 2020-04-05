@@ -1,17 +1,21 @@
 package geometries;
 
-import jdk.jfr.Description;
-import jdk.jfr.MetadataDefinition;
 import org.junit.Test;
 import primitives.Point3D;
 import primitives.Vector;
 
 import static org.junit.Assert.*;
 
+/**
+ * Testing Triangle
+ *
+ * @author AhronS and IsraelN
+ */
 public class TriangleTest {
 
     /**
-     *
+     * Test method for
+     * {@link geometries.Triangle#getNormal(Point3D)}.
      */
     @Test
     public void testGetNormal() {

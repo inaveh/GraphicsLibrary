@@ -16,7 +16,7 @@ public class Plane implements Geometry {
     // ****************************** Constructors *****************************/
 
     /**
-     *  Plane constructor by 3 Points
+     * Plane constructor by 3 Points
      *
      * @param p1 point3d
      * @param p2 point3d
@@ -60,7 +60,7 @@ public class Plane implements Geometry {
         return _normal;
     }
 
-    /****************************** Overrides *****************************/
+    // ****************************** Overrides *****************************/
     @Override
     public Vector getNormal(Point3D other) {
         Vector p2p = new Vector(this._p.subtract(other));

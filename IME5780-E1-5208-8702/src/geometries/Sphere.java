@@ -26,6 +26,8 @@ public class Sphere extends RadialGeometry {
         this._center = _center;
     }
 
+    // ****************************** Getters *****************************/
+
     /**
      * Sphere getter
      *
@@ -35,7 +37,7 @@ public class Sphere extends RadialGeometry {
         return _center;
     }
 
-    /****************************** Overrides *****************************/
+    // ****************************** Overrides *****************************/
     @Override
     public Vector getNormal(Point3D point3D) {
         Vector vector = new Vector(point3D.subtract(_center));

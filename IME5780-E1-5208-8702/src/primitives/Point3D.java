@@ -5,7 +5,6 @@ package primitives;
  *
  * @author AhronS, IsraelN
  */
-
 public class Point3D {
     private Coordinate _x;
     private Coordinate _y;
@@ -17,6 +16,7 @@ public class Point3D {
     public final static Point3D ZERO = new Point3D(0, 0, 0);
 
     // ****************************** Constructors *****************************/
+
     /**
      * Point3D constructor receiving a 3 coordinate
      *
@@ -52,6 +52,8 @@ public class Point3D {
         this._z = other._z;
     }
 
+    // ****************************** Getters *****************************/
+
     /**
      * Point3D value getter
      *
@@ -80,6 +82,7 @@ public class Point3D {
     }
 
     // ****************************** Functions *****************************/
+
     /**
      * this func subtracting a point from another point
      *
@@ -151,6 +154,4 @@ public class Point3D {
                 ", _z=" + _z +
                 '}';
     }
-
-
 }

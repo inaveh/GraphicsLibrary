@@ -18,6 +18,7 @@ public class Cylinder extends Tube {
     private Double _height;
 
     // ****************************** Constructors *****************************/
+
     /**
      * Cylinder constructor
      *
@@ -29,6 +30,8 @@ public class Cylinder extends Tube {
         this._height = _height;
     }
 
+    // ****************************** Getters *****************************/
+
     /**
      * Cylinder getter
      *
@@ -38,7 +41,7 @@ public class Cylinder extends Tube {
         return _height;
     }
 
-    /****************************** Overrides *****************************/
+    // ****************************** Overrides *****************************/
     @Override
     public Vector getNormal(Point3D point3D) {
         // check if its same points p0==p
@@ -51,7 +54,7 @@ public class Cylinder extends Tube {
             return this.getAxisRay().getDir();
         }
         // check if p at the base, orthogonal, so the normal is the vec of the ray
-        if (t == 0 || isZero(this._height - t))
+        if (t == 0 || (this._height - t) == 0)
             return this.getAxisRay().getDir();
         // else, it's like Tube
         Vector shadow = new Vector(this.getAxisRay().getDir().scale(t));

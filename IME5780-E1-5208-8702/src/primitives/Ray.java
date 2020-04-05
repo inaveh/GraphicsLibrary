@@ -9,6 +9,8 @@ public class Ray {
     private Point3D _p0;
     private Vector _dir;
 
+    // ****************************** Constructors *****************************/
+
     /**
      * Ray constructor receiving a 2 value
      *
@@ -17,7 +19,7 @@ public class Ray {
      */
     public Ray(Point3D _p0, Vector _dir) {
         this._p0 = _p0;
-        this._dir = _dir.normalize();
+        this._dir = _dir.normalized();
     }
 
     /**
@@ -27,8 +29,10 @@ public class Ray {
      */
     public Ray(Ray other) {
         this._p0 = other._p0;
-        this._dir = other._dir.normalize();
+        this._dir = other._dir.normalized();
     }
+
+    // ****************************** Getters *****************************/
 
     /**
      * Ray getter value
@@ -48,7 +52,7 @@ public class Ray {
         return _dir;
     }
 
-    /****************************** Override ****************/
+    // ****************************** Overrides *****************************/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
