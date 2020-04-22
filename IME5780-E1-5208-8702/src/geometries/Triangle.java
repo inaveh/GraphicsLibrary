@@ -23,15 +23,4 @@ public class Triangle extends Polygon {
     public Triangle(Point3D a, Point3D b, Point3D c) {
         super(a, b, c);
     }
-
-    // ****************************** Overrides *****************************/
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
-    public Vector getNormal(Point3D point) {
-        return super.getNormal(point);
-    }
 }

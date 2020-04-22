@@ -54,10 +54,10 @@ public class Cylinder extends Tube {
             return this.getAxisRay().getDir();
         }
         // check if p at the base, orthogonal, so the normal is the vec of the ray
-        if (t == 0 || (this._height - t) == 0)
+        if (isZero(t) || isZero(this._height - t))
             return this.getAxisRay().getDir();
         // else, it's like Tube
-        Vector shadow = new Vector(this.getAxisRay().getDir().scale(t));
+        Vector shadow = this.getAxisRay().getDir().scale(t);
         return n.subtract(shadow).normalize();
     }
 

@@ -6,8 +6,8 @@ package primitives;
  * @author AhronS, IsraelN
  */
 public class Ray {
-    private Point3D _p0;
-    private Vector _dir;
+    private final Point3D _p0;
+    private final Vector _dir;
 
     // ****************************** Constructors *****************************/
 

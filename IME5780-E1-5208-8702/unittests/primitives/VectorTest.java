@@ -147,21 +147,6 @@ public class VectorTest {
         //Test that normalize() really normalized the vector
         if (!isZero(vCopyNormalize.length() - 1) || (!v.normalize().equals(unit)))
             fail("ERROR: normalize() result is not a unit vector");
-
-        //we don't know if we need check here the ability of create vector zero???
-        /*=============== Boundary Values Tests ==================
-        //Test that normalize a zero vector
-
-        try {
-            new Vector(0,0,0).normalize();
-            fail("ERROR can't normalize vector 0");
-        } catch (IllegalArgumentException e) { //to catch for create zero vector
-            assertTrue(true);
-        } catch (ArithmeticException e) { //to catch normalize zero vector
-            assertTrue(true);
-        }
-
-         */
     }
 
     /**

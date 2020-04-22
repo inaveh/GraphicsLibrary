@@ -23,6 +23,6 @@ public class SphereTest {
 
         // ============ Equivalence Partitions Tests ==============
         // Test that get normal of sphere return the correct answer
-        assertEquals("Bad normal to sphere", new Vector(0, 0, -1), s1.getNormal(new Point3D(0, 0, 2)));
+        assertEquals("Bad normal to sphere", new Vector(0, 0, 1), s1.getNormal(new Point3D(0, 0, 2)));
     }
 }
