@@ -26,4 +26,8 @@ public class PlaneTest {
         // Test that get normal of plane return the correct answer
         assertEquals("Bad normal to plane", new Vector(0, 1, -1), new Vector(point3D.subtract(vector.getHead())).crossProduct(vector));
     }
+
+    @Test
+    public void testFindIntersections() {
+    }
 }

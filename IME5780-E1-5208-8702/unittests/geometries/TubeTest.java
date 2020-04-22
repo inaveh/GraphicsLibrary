@@ -28,4 +28,8 @@ public class TubeTest {
         Tube t = new Tube(1d, r);
         assertEquals("bad tube normal", new Vector(0, 1, 0), t.getNormal(p));
     }
+
+    @Test
+    public void testFindIntersections() {
+    }
 }

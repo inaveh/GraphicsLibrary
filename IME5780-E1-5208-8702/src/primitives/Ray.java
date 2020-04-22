@@ -52,6 +52,13 @@ public class Ray {
         return _dir;
     }
 
+    /**
+    //to do!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public Point3D getPoint(double t){
+
+        return this.getDir().scale(t).getHead();
+    } ;
+
     // ****************************** Overrides *****************************/
     @Override
     public boolean equals(Object o) {

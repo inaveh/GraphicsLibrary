@@ -5,7 +5,7 @@ import primitives.Vector;
 /**
  *interface for geometric objects
  */
-public interface Geometry {
+public interface Geometry extends Intersectable {
 
     /**
      * this func receiving a point and providing a normal

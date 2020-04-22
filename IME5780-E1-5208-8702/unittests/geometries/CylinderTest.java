@@ -54,5 +54,8 @@ public class CylinderTest {
         assertEquals("bad cylinder normal", r.getDir(), c1.getNormal(p6));
     }
 
+    @Test
+    public void testFindIntersections() {
+    }
 
 }
