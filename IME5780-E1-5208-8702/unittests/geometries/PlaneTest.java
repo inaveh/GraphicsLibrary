@@ -57,13 +57,20 @@ public class PlaneTest {
         assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 1), new Vector(1, 1, 0))));
 
         // **** Group: Ray is orthogonal to the plane
+
         // TC05: Ray is before the plane (1 point)
-        assertEquals("bad findIntersections of plane", List.of(new Point3D(0, 0, 0), plane.findIntersections(new Ray(new Point3D(0, 0, -1), new Vector(0, 0, 1)))));
+        assertEquals("bad findIntersections of plane", List.of(new Point3D(0, 0, 0)), plane.findIntersections(new Ray(new Point3D(0, 0, -1), new Vector(0, 0, 1))));
 
         // TC06: Ray is in the plane (0 point)
         assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 0), new Vector(0, 0, 1))));
 
         // TC07: Ray after the plane (0 point)
         assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 1), new Vector(0, 0, 1))));
+
+        // TC08: Ray begins at the plane (0 point)
+        assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(1, 1, 0), new Vector(1, 1, 1))));
+
+        // TC09: Ray is the same point as reference point in the plane (0 point)
+        assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(plane.getP(), new Vector(1, 1, 1))));
     }
 }
