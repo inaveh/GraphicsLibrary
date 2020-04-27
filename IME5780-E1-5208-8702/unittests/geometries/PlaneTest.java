@@ -1,8 +1,15 @@
 package geometries;
 
+
 import org.junit.Test;
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
+
+
+import java.util.List;
+
+import java.awt.*;
 
 import static org.junit.Assert.*;
 
@@ -29,5 +36,34 @@ public class PlaneTest {
 
     @Test
     public void testFindIntersections() {
+        // ============ Equivalence Partitions Tests ==============
+
+        Plane plane = new Plane(new Point3D(1, 0, 0), new Point3D(0, 1, 0), new Point3D(0, 0, 1));
+        // TC01: Ray is neither orthogonal nor parallel (1 points)
+        assertEquals("bad findIntersections of plane", List.of(new Point3D(1, 1, 0), plane.findIntersections(new Ray(new Point3D(0, 0, 1), new Vector(1, 1, -1)))));
+
+        // TC02: Ray is neither orthogonal nor parallel (0 points)
+        assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 1), new Vector(1, 1, 2))));
+        ;
+
+
+        // =============== Boundary Values Tests ==================
+        // **** Group: Ray is parallel to the plane
+
+        // TC03: Ray is included in the plane (0 point)
+        assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 0), new Vector(1, 1, 0))));
+
+        // TC04: Ray is not included in the plane (0 point)
+        assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 1), new Vector(1, 1, 0))));
+
+        // **** Group: Ray is orthogonal to the plane
+        // TC05: Ray is before the plane (1 point)
+        assertEquals("bad findIntersections of plane", List.of(new Point3D(0, 0, 0), plane.findIntersections(new Ray(new Point3D(0, 0, -1), new Vector(0, 0, 1)))));
+
+        // TC06: Ray is in the plane (0 point)
+        assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 0), new Vector(0, 0, 1))));
+
+        // TC07: Ray after the plane (0 point)
+        assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 1), new Vector(0, 0, 1))));
     }
 }
