@@ -6,6 +6,8 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+
 /**
  * class Sphere for describe sphere object
  * this class extends from RadialGeometry
@@ -55,6 +57,36 @@ public class Sphere extends RadialGeometry {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        return null;
+        Point3D p0 = ray.getP0();
+        Vector v = ray.getDir();
+        Vector u;
+        //check if p0 same as _center
+        try {
+            u = _center.subtract(p0);
+        } catch (IllegalArgumentException e) {
+            return List.of(p0.add(v.scale(getRadius())));
+        }
+
+        double tm = alignZero(v.dotProduct(u));
+        double dSquared = u.lengthSquared() - tm * tm;
+        double thSquared = alignZero(getRadius() * getRadius() - dSquared);
+
+        //if d > r
+        if (thSquared < 0) return null;
+
+        double th = alignZero(Math.sqrt(thSquared));
+        //if the ray tangent
+        if (th == 0) return null;
+
+        double t1 = alignZero(tm - th);
+        double t2 = alignZero(tm + th);
+        if (t1 <= 0 && t2 <= 0)
+            return null;
+        if (t1 > 0 && t2 > 0)
+            return List.of(p0.add(v.scale(t1)), p0.add(v.scale(t2))); //two points
+        if (t1 > 0)
+            return List.of(p0.add(v.scale(t1)));
+        else
+            return List.of(p0.add(v.scale(t2)));
     }
 }

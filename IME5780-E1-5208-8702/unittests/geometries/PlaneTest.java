@@ -38,14 +38,12 @@ public class PlaneTest {
     public void testFindIntersections() {
         // ============ Equivalence Partitions Tests ==============
 
-        Plane plane = new Plane(new Point3D(1, 0, 0), new Point3D(0, 1, 0), new Point3D(0, 0, 1));
+        Plane plane = new Plane(new Point3D(1, 0, 0), new Point3D(0, 1, 0), new Point3D(0, 0, 0));
         // TC01: Ray is neither orthogonal nor parallel (1 points)
         assertEquals("bad findIntersections of plane", List.of(new Point3D(1, 1, 0), plane.findIntersections(new Ray(new Point3D(0, 0, 1), new Vector(1, 1, -1)))));
 
         // TC02: Ray is neither orthogonal nor parallel (0 points)
         assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(new Point3D(0, 0, 1), new Vector(1, 1, 2))));
-        ;
-
 
         // =============== Boundary Values Tests ==================
         // **** Group: Ray is parallel to the plane

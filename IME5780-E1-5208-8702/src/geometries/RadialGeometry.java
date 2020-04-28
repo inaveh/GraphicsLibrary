@@ -6,7 +6,7 @@ package geometries;
  * @author AhronS and IsraelN
  */
 public abstract class RadialGeometry implements Geometry {
-    private Double _radius;
+    private double _radius;
 
     // ****************************** Constructors *****************************/
 
@@ -15,7 +15,7 @@ public abstract class RadialGeometry implements Geometry {
      *
      * @param _radius radius
      */
-    public RadialGeometry(Double _radius) {
+    public RadialGeometry(double _radius) {
         this._radius = _radius;
     }
 
@@ -35,7 +35,7 @@ public abstract class RadialGeometry implements Geometry {
      *
      * @return _radius
      */
-    public Double getRadius() {
+    public double getRadius() {
         return _radius;
     }
 
