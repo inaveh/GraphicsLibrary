@@ -51,7 +51,7 @@ public class Geometries implements Intersectable {
             List<Point3D> tempIntersections = geo.findIntersections(ray);
             if (tempIntersections != null) {
                 if (intersections == null)
-                    intersections = new ArrayList<>();
+                    intersections = new LinkedList<>();
                 intersections.addAll(tempIntersections);
             }
         }
