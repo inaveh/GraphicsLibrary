@@ -4,37 +4,50 @@ import primitives.Point3D;
 import primitives.Ray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Geometries implements Intersectable {
-    private List<Intersectable> list;
+    private List<Intersectable> listOfGeometries;
 
+
+    // ****************************** Constructors *****************************/
+
+    /**
+     * Geometries def constructor
+     */
     public Geometries() {
-        this.list = new LinkedList<Intersectable>();
+        this.listOfGeometries = new LinkedList<>();
     }
 
-    ;
-
-    public Geometries(Intersectable... geometries) {
-        this.list = new LinkedList<Intersectable>();
-        for (int i = 0; i < geometries.length; i++)
-            this.list.add(geometries[i]);
+    /**
+     * Geometries constructor
+     *
+     * @param _geometries .
+     */
+    public Geometries(Intersectable... _geometries) {
+        add(_geometries);
     }
 
-    ;
-
-    public void add(Intersectable... geometries) {
-        for (int i = 0; i < geometries.length; i++)
-            this.list.add(geometries[i]);
+    /**
+     * add geometry to list
+     *
+     * @param _geometries .
+     */
+    public void add(Intersectable... _geometries) {
+        this.listOfGeometries.addAll(Arrays.asList(_geometries));
     }
 
-
+    /**
+     * Test method for
+     * {@link geometries.Geometries #findIntersections(Ray)}.
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> intersections = null;
 
-        for (Intersectable geo : list) {
+        for (Intersectable geo : listOfGeometries) {
             List<Point3D> tempIntersections = geo.findIntersections(ray);
             if (tempIntersections != null) {
                 if (intersections == null)
