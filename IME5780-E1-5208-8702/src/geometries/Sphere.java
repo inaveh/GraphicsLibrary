@@ -66,18 +66,13 @@ public class Sphere extends RadialGeometry {
         } catch (IllegalArgumentException e) {
             return List.of(p0.add(v.scale(getRadius())));
         }
-
         double tm = alignZero(v.dotProduct(u));
         double dSquared = u.lengthSquared() - tm * tm;
         double thSquared = alignZero(getRadius() * getRadius() - dSquared);
 
-        //if d > r
-        if (thSquared < 0) return null;
-
+        if (thSquared <= 0)
+            return null;
         double th = alignZero(Math.sqrt(thSquared));
-        //if the ray tangent
-        if (th == 0) return null;
-
         double t1 = alignZero(tm - th);
         double t2 = alignZero(tm + th);
         if (t1 <= 0 && t2 <= 0)
@@ -86,7 +81,6 @@ public class Sphere extends RadialGeometry {
             return List.of(p0.add(v.scale(t1)), p0.add(v.scale(t2))); //two points
         if (t1 > 0)
             return List.of(p0.add(v.scale(t1)));
-        else
-            return List.of(p0.add(v.scale(t2)));
+        return List.of(p0.add(v.scale(t2)));
     }
 }

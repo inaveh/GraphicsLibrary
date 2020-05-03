@@ -9,12 +9,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * class Geometries
- *
+ * class Geometries all geometries in the collect
  */
 public class Geometries implements Intersectable {
+    // hold the collect of the geometries
     private List<Intersectable> listOfGeometries;
-
 
     // ****************************** Constructors *****************************/
 
@@ -44,10 +43,6 @@ public class Geometries implements Intersectable {
         this.listOfGeometries.addAll(Arrays.asList(_geometries));
     }
 
-    /**
-     * Test method for
-     * {@link geometries.Geometries #findIntersections(Ray)}.
-     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> intersections = null;
@@ -56,7 +51,7 @@ public class Geometries implements Intersectable {
             List<Point3D> tempIntersections = geo.findIntersections(ray);
             if (tempIntersections != null) {
                 if (intersections == null)
-                    intersections = new ArrayList<>();
+                    intersections = new LinkedList<>();
                 intersections.addAll(tempIntersections);
             }
         }
