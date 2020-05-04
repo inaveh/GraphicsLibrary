@@ -1,8 +1,6 @@
 package elements;
 
-import geometries.Plane;
-import geometries.Sphere;
-import geometries.Triangle;
+import geometries.*;
 import org.junit.Test;
 import primitives.Point3D;
 import primitives.Ray;
@@ -24,24 +22,28 @@ public class CameraIntegrationTest {
     Camera cam2 = new Camera(new Point3D(0, 0, -0.5), v001, v0_10);
 
     /**
-     * test method for camera and sphere
-     * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
+     * @param geo            geometries shape
+     * @param Nx             pixels on width
+     * @param Ny             pixels on height
+     * @param cam            the place of camera
+     * @param screenDistance dst from view plane
+     * @param screenWidth    screen width
+     * @param screenHeight   screen height
+     * @return how much intersections
      */
-    @Test
-    public void firstTestCaseSphere() {
-        Sphere sphere = new Sphere(1d, new Point3D(0, 0, 3));
-        int Nx = 3;
-        int Ny = 3;
+    public int getIntersections(Geometry geo, int Nx, int Ny, Camera cam,
+                                double screenDistance, double screenWidth, double screenHeight) {
         int count = 0;
         for (int i = 0; i < Nx; ++i) {
             for (int j = 0; j < Ny; ++j) {
-                Ray ray = cam1.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3);
-                List<Point3D> amountOfIntersections = sphere.findIntersections(ray);
-                if (amountOfIntersections != null)
-                    count += ((List) amountOfIntersections).size();
+                Ray ray = cam.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3);
+                List<Point3D> amountOfIntersections = geo.findIntersections(ray);
+                if (amountOfIntersections != null) {
+                    count += amountOfIntersections.size();
+                }
             }
         }
-        assertEquals("Incorrect amount of intersections", 2, count);
+        return count;
     }
 
     /**
@@ -49,83 +51,23 @@ public class CameraIntegrationTest {
      * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
      */
     @Test
-    public void secondTestCaseSphere() {
-        Sphere sphere = new Sphere(2.5, new Point3D(0, 0, 2.5));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = sphere.findIntersections(cam2.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 18, count);
-    }
+    public void testCaseSphere() {
+        Sphere sphere1 = new Sphere(1d, new Point3D(0, 0, 3));
+        Sphere sphere2 = new Sphere(2.5, new Point3D(0, 0, 2.5));
+        Sphere sphere3 = new Sphere(2d, new Point3D(0, 0, 2));
+        Sphere sphere4 = new Sphere(4d, new Point3D(0, 0, 0));
+        Sphere sphere5 = new Sphere(0.5, new Point3D(0, 0, -1));
 
-    /**
-     * test method for camera and sphere
-     * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
-     */
-    @Test
-    public void thirdTestCaseSphere() {
-        Sphere sphere = new Sphere(2d, new Point3D(0, 0, 2));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = sphere.findIntersections(cam2.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 10, count);
-    }
-
-    /**
-     * test method for camera and sphere
-     * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
-     */
-    @Test
-    public void fourthTestCaseSphere() {
-        Sphere sphere = new Sphere(4d, new Point3D(0, 0, 0));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = sphere.findIntersections(cam1.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 9, count);
-    }
-
-    /**
-     * test method for camera and sphere
-     * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
-     */
-    @Test
-    public void fifthTestCaseSphere() {
-        Sphere sphere = new Sphere(0.5, new Point3D(0, 0, -1));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = sphere.findIntersections(cam1.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 0, count);
+        //test case for sphere 1 (2 points)
+        assertEquals("Incorrect amount of intersections", 2, getIntersections(sphere1, 3, 3, cam1, 1, 3, 3));
+        //test case for sphere 2 (18 points)
+        assertEquals("Incorrect amount of intersections", 18, getIntersections(sphere2, 3, 3, cam2, 1, 3, 3));
+        //test case for sphere 3 (10 points)
+        assertEquals("Incorrect amount of intersections", 10, getIntersections(sphere3, 3, 3, cam2, 1, 3, 3));
+        //test case for sphere 4 (9 points)
+        assertEquals("Incorrect amount of intersections", 9, getIntersections(sphere4, 3, 3, cam1, 1, 3, 3));
+        //test case for sphere 5 (0 points)
+        assertEquals("Incorrect amount of intersections", 0, getIntersections(sphere5, 3, 3, cam1, 1, 3, 3));
     }
 
     /**
@@ -133,62 +75,17 @@ public class CameraIntegrationTest {
      * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
      */
     @Test
-    public void firstTestCasePlane() {
-        Plane plane = new Plane(new Point3D(0, 0, 3), new Vector(0, 0, 1));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = plane.findIntersections(cam1.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 9, count);
-    }
+    public void testCasePlane() {
+        Plane plane1 = new Plane(new Point3D(0, 0, 3), new Vector(0, 0, 1));
+        Plane plane2 = new Plane(new Point3D(0.5, -1.5, 2), new Point3D(0, 0, 2.5), new Point3D(0, 1.5, 3));
+        Plane plane3 = new Plane(new Point3D(0.5, -2, 2), new Point3D(0, 0, 4), new Point3D(0, 2, 6));
 
-    /**
-     * test method for camera and plane
-     * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
-     */
-    @Test
-    public void secondTestCasePlane() {
-        Plane plane = new Plane(new Point3D(0.5, -1.5, 2), new Point3D(0, 0, 2.5), new Point3D(0, 1.5, 3));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = plane.findIntersections(cam1.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 9, count);
-    }
-
-    /**
-     * test method for camera and plane
-     * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
-     */
-    @Test
-    public void fourthTestCasePlane() {
-        Plane plane = new Plane(new Point3D(0.5, -2, 2), new Point3D(0, 0, 4), new Point3D(0, 2, 6));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = plane.findIntersections(cam1.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 6, count);
+        //test case for plane 1 (9 points)
+        assertEquals("Incorrect amount of intersections", 9, getIntersections(plane1, 3, 3, cam1, 1, 3, 3));
+        //test case for plane 2 (9 points)
+        assertEquals("Incorrect amount of intersections", 9, getIntersections(plane2, 3, 3, cam1, 1, 3, 3));
+        //test case for plane 3 (6 points)
+        assertEquals("Incorrect amount of intersections", 6, getIntersections(plane3, 3, 3, cam1, 1, 3, 3));
     }
 
     /**
@@ -196,40 +93,13 @@ public class CameraIntegrationTest {
      * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
      */
     @Test
-    public void firstTestCaseTriangle() {
-        Triangle triangle = new Triangle(new Point3D(0, -1, 2), new Point3D(1, 1, 2), new Point3D(-1, 1, 2));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = triangle.findIntersections(cam1.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 1, count);
-    }
+    public void testCaseTriangle() {
+        Triangle triangle1 = new Triangle(new Point3D(0, -1, 2), new Point3D(1, 1, 2), new Point3D(-1, 1, 2));
+        Triangle triangle2 = new Triangle(new Point3D(0, -20, 2), new Point3D(1, 1, 2), new Point3D(-1, 1, 2));
 
-    /**
-     * test method for camera and triangle
-     * {@link elements.CameraIntegrationTest# constructRayThroughPixel(int, int, int, int, double, double, double), findIntersection(Ray)}.
-     */
-    @Test
-    public void secondTestCaseTriangle() {
-        Triangle triangle = new Triangle(new Point3D(0, -20, 2), new Point3D(1, 1, 2), new Point3D(-1, 1, 2));
-        List<Point3D> amountOfIntersections;
-        int count = 0;
-        int Nx = 3;
-        int Ny = 3;
-        for (int i = 0; i < Nx; ++i) {
-            for (int j = 0; j < Ny; ++j) {
-                amountOfIntersections = triangle.findIntersections(cam1.constructRayThroughPixel(Nx, Ny, j, i, 1, 3, 3));
-                if (amountOfIntersections != null)
-                    count += amountOfIntersections.size();
-            }
-        }
-        assertEquals("Incorrect amount of intersections", 2, count);
+        //test case for triangle 1 (1 points)
+        assertEquals("Incorrect amount of intersections", 1, getIntersections(triangle1, 3, 3, cam1, 1, 3, 3));
+        //test case for triangle 1 (1 points)
+        assertEquals("Incorrect amount of intersections", 2, getIntersections(triangle2, 3, 3, cam1, 1, 3, 3));
     }
 }

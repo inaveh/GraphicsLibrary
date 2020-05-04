@@ -102,11 +102,8 @@ public class Plane implements Geometry {
 
         double t = alignZero(_normal.dotProduct(p0Q) / nv);
 
-        if(t <= 0) return null;
-        else
-            return List.of(p0.add(v.scale(t)));
-
-
-
+        if (t <= 0)
+            return null;
+        return List.of(p0.add(v.scale(t)));
     }
 }

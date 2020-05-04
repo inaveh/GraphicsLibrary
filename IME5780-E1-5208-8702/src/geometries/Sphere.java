@@ -64,7 +64,7 @@ public class Sphere extends RadialGeometry {
         try {
             u = _center.subtract(p0);
         } catch (IllegalArgumentException e) {
-            return List.of(p0.add(v.scale(getRadius())));
+            return List.of(ray.getPoint(getRadius()));
         }
         double tm = alignZero(v.dotProduct(u));
         double dSquared = u.lengthSquared() - tm * tm;
@@ -78,9 +78,9 @@ public class Sphere extends RadialGeometry {
         if (t1 <= 0 && t2 <= 0)
             return null;
         if (t1 > 0 && t2 > 0)
-            return List.of(p0.add(v.scale(t1)), p0.add(v.scale(t2))); //two points
+            return List.of(ray.getPoint(t1), ray.getPoint(t2)); //two points
         if (t1 > 0)
-            return List.of(p0.add(v.scale(t1)));
-        return List.of(p0.add(v.scale(t2)));
+            return List.of(ray.getPoint(t1));
+        return List.of(ray.getPoint(t2));
     }
 }

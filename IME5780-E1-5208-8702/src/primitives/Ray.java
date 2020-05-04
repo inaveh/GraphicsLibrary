@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.isZero;
+
 /**
  * class Ray for describe a vector when the begin point is not 0,0,0
  *
@@ -53,11 +55,14 @@ public class Ray {
     }
 
     /**
-    //to do!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public Point3D getPoint(double t){
-
-        return this.getDir().scale(t).getHead();
-    } ;
+     * the target point for refactor
+     *
+     * @return the target
+     * @ length to scale
+     */
+    public Point3D getPoint(double length) {
+        return isZero(length) ? _p0 : _p0.add(_dir.scale(length));
+    }
 
     // ****************************** Overrides *****************************/
     @Override
