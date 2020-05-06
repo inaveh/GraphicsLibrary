@@ -16,7 +16,7 @@ public class AmbientLight {
         _intensity = i.scale(k);
     }
 
-    public Color GetIntensity(){
-        return null;
+    public Color GetIntensity() {
+        return _intensity;
     }
 }
