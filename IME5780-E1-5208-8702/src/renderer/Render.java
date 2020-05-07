@@ -81,13 +81,16 @@ public class Render {
      * And where there are points that are in the geometric body - then paint a special color
      */
     public void renderImage() {
+        Ray ray;
         int nX = _imageWriter.getNx();
         int nY = _imageWriter.getNy();
         for (int i = 0; i < nX; ++i)
             for (int j = 0; j < nY; ++j) {
-                Ray ray = _scene.getCamera().constructRayThroughPixel(nX, nY, j, i, _scene.getDistance(),
+                //creating a new ray for every pixel
+                ray = _scene.getCamera().constructRayThroughPixel(nX, nY, j, i, _scene.getDistance(),
                         _imageWriter.getWidth(), _imageWriter.getHeight());
                 List<Point3D> intersectionPoints = _scene.getGeometries().findIntersections(ray);
+                // if no have intersection on this ray so paint background
                 if (intersectionPoints == null)
                     _imageWriter.writePixel(j, i, _scene.getBackground().getColor());
                 else {
@@ -105,4 +108,7 @@ public class Render {
     public void writeToImage() {
         _imageWriter.writeToImage();
     }
+
+
+
 }
