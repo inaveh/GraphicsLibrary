@@ -1,5 +1,7 @@
 package renderer;
 
+import elements.Camera;
+import geometries.Intersectable;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Ray;
@@ -35,8 +37,6 @@ public class Render {
      * @return the closest point to the camera
      */
     private Point3D getClosestPoint(List<Point3D> points) {
-        if (points == null)
-            throw new IllegalArgumentException("The list of points cannot be empty");
         //initialization closesDistance to be the largest number of a double type
         double minDistance = Double.MAX_VALUE;
         Point3D closesPoint = null;
@@ -81,18 +81,25 @@ public class Render {
      * And where there are points that are in the geometric body - then paint a special color
      */
     public void renderImage() {
-        Ray ray;
+        Camera camera = _scene.getCamera();
+        Intersectable geometries = _scene.getGeometries();
+        java.awt.Color background = _scene.getBackground().getColor();
+
         int nX = _imageWriter.getNx();
         int nY = _imageWriter.getNy();
-        for (int i = 0; i < nX; ++i)
+
+        double width = _imageWriter.getWidth();
+        double height = _imageWriter.getHeight();
+        double distance = _scene.getDistance();
+
+        Ray ray; for (int i = 0; i < nX; ++i)
             for (int j = 0; j < nY; ++j) {
                 //creating a new ray for every pixel
-                ray = _scene.getCamera().constructRayThroughPixel(nX, nY, j, i, _scene.getDistance(),
-                        _imageWriter.getWidth(), _imageWriter.getHeight());
-                List<Point3D> intersectionPoints = _scene.getGeometries().findIntersections(ray);
+                ray = camera.constructRayThroughPixel(nX, nY, j, i, distance, width, height);
+                List<Point3D> intersectionPoints = geometries.findIntersections(ray);
                 // if no have intersection on this ray so paint background
                 if (intersectionPoints == null)
-                    _imageWriter.writePixel(j, i, _scene.getBackground().getColor());
+                    _imageWriter.writePixel(j, i, background);
                 else {
                     Point3D closestPoint = getClosestPoint(intersectionPoints);
                     _imageWriter.writePixel(j, i, calcColor(closestPoint).getColor());
