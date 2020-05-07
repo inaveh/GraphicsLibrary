@@ -108,7 +108,4 @@ public class Render {
     public void writeToImage() {
         _imageWriter.writeToImage();
     }
-
-
-
 }
