@@ -5,6 +5,7 @@ import primitives.Color;
 /**
  * class for ambient light
  * to add light for our image
+ * @author AhronS, IsraelN
  */
 public class AmbientLight {
     private Color _intensity;
@@ -16,7 +17,12 @@ public class AmbientLight {
         _intensity = i.scale(k);
     }
 
-    public Color GetIntensity() {
+    /**
+     * getter for intensity
+     *
+     * @return intensity
+     */
+    public Color getIntensity() {
         return _intensity;
     }
 }

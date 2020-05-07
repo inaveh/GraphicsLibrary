@@ -17,7 +17,8 @@ public class Camera {
     private Vector vup;
     private Vector vright;
 
-    // ****************************** Getters *****************************/
+    // ****************************** Getters *****************************//
+
     /**
      * Camera getter
      *
@@ -54,7 +55,8 @@ public class Camera {
         return vright;
     }
 
-    // ****************************** Constructors *****************************/
+    // ****************************** Constructors *****************************//
+
     /**
      * constructor for camera with params
      *

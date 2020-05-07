@@ -19,13 +19,19 @@ public class Scene {
     private Camera _camera;
     private double _distance;
 
-    // ****************************** Constructors *****************************/
+    // ****************************** Constructors *****************************//
+
+    /**
+     * constructoe for scene
+     *
+     * @param name of the scene
+     */
     public Scene(String name) {
         _name = name;
         _geometries = new Geometries();
     }
 
-    // ****************************** Getters *****************************/
+    // ****************************** Getters *****************************//
 
     /**
      * Scene getter
@@ -81,7 +87,7 @@ public class Scene {
         return _distance;
     }
 
-    // ****************************** Setters *****************************/
+    // ****************************** Setters *****************************//
 
     /**
      * Scene setter for background
@@ -116,7 +122,7 @@ public class Scene {
      *
      * @param geometries geo
      */
-     public void addGeometries(Intersectable... geometries) {
+    public void addGeometries(Intersectable... geometries) {
         _geometries.add(geometries);
     }
 }

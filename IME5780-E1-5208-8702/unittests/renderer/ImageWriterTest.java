@@ -19,16 +19,13 @@ public class ImageWriterTest {
     public void testFirstImage() {
         // Test create new image (10*16 squares) and paint by write pixel
         ImageWriter imageWriter = new ImageWriter("myImage", 1600, 1000, 800, 500);
-        for (int i = 0; i < 800; i++) {
+        for (int i = 0; i < 800; i++)
             for (int j = 0; j < 500; j++) {
-                if (i % 50 == 0)
-                    imageWriter.writePixel(i, j, Color.black);
-                else if (j % 50 == 0)
+                if (i % 50 == 0 || j % 50 == 0)
                     imageWriter.writePixel(i, j, Color.black);
                 else
                     imageWriter.writePixel(i, j, Color.green);
             }
-        }
         imageWriter.writeToImage();
     }
 }
