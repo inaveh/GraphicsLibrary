@@ -15,7 +15,7 @@ import static primitives.Util.isZero;
  *
  * @author AhronS, IsraelN
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
     private Point3D _p;
     private Vector _normal;
 
@@ -84,7 +84,7 @@ public class Plane implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findIntersections(Ray ray) {
         Vector p0Q;
         Point3D p0 = ray.getP0();
         Vector v = ray.getDir();
@@ -104,6 +104,6 @@ public class Plane implements Geometry {
 
         if (t <= 0)
             return null;
-        return List.of(p0.add(v.scale(t)));
+        return List.of(new GeoPoint(this, p0.add(v.scale(t))));
     }
 }
