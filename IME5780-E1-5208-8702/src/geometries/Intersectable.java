@@ -5,6 +5,9 @@ import primitives.Ray;
 
 import java.util.List;
 
+/**
+ * interface Intersectable for all intersectable objects
+ */
 public interface Intersectable {
     List<GeoPoint> findIntersections(Ray ray);
 
@@ -15,17 +18,20 @@ public interface Intersectable {
         public Geometry geometry;
         public Point3D point;
 
+        // ****************************** Constructors *****************************//
+
         /**
          * GeoPoint constructor
+         *
          * @param _geometry geometry
-         * @param _point point
+         * @param _point    point
          */
         public GeoPoint(Geometry _geometry, Point3D _point) {
             this.geometry = _geometry;
             this.point = _point;
-
-
         }
+
+        // ****************************** Overrides *****************************//
 
         @Override
         public boolean equals(Object o) {
@@ -37,5 +43,4 @@ public interface Intersectable {
                     && point.equals(geoPoint.point);
         }
     }
-
 }

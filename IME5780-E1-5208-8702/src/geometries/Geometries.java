@@ -32,14 +32,18 @@ public class Geometries implements Intersectable {
         add(_geometries);
     }
 
+    // ****************************** Functions *****************************//
+
     /**
      * add geometry to list
      *
-     * @param _geometries .
+     * @param _geometries
      */
     public void add(Intersectable... _geometries) {
         this.listOfGeometries.addAll(Arrays.asList(_geometries));
     }
+
+    // ****************************** Overrides *****************************//
 
     @Override
     public List<GeoPoint> findIntersections(Ray ray) {

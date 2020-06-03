@@ -3,10 +3,13 @@ package elements;
 import primitives.Color;
 
 /**
- * class Light
+ * class Light base class for the Lights
+ *
  */
 abstract class Light {
     protected Color _intensity;
+
+    // ****************************** Constructors *****************************//
 
     /**
      * light constructor

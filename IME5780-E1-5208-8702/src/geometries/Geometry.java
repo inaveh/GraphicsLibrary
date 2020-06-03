@@ -20,7 +20,6 @@ public abstract class Geometry implements Intersectable {
     public Geometry() {
         this._emission = Color.BLACK;
         _material=new Material(0,0,0);
-
     }
 
     /**
@@ -43,6 +42,8 @@ public abstract class Geometry implements Intersectable {
         this(_emission);
         this._material = _material;
     }
+
+    // ****************************** Getters *****************************//
 
     /**
      * _emission getter
@@ -67,5 +68,5 @@ public abstract class Geometry implements Intersectable {
      *
      * @param point3D the point
      */
-    abstract public Vector getNormal(Point3D point3D);
+    public abstract Vector getNormal(Point3D point3D);
 }

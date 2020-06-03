@@ -4,11 +4,13 @@ import org.junit.Test;
 
 import elements.*;
 import geometries.*;
+import renderer.ImageWriter;
+import renderer.Render;
 import primitives.*;
 import scene.Scene;
 
 /**
- * Test rendering abasic image
+ * Test rendering a basic image
  *
  * @author Dan
  */
@@ -54,17 +56,24 @@ public class RenderTests {
 
         scene.addGeometries(
                 new Triangle(new Color(java.awt.Color.BLUE),
-                        new Point3D(100, 0, 100), new Point3D(0, 100, 100), new Point3D(100, 100, 100)),      // lower right
+                        new Point3D(100, 0, 100),
+                        new Point3D(0, 100, 100),
+                        new Point3D(100, 100, 100)),   // lower right
                 new Triangle(
-                        new Point3D(100, 0, 100), new Point3D(0, -100, 100), new Point3D(100, -100, 100)),    // upper right
+                        new Point3D(100, 0, 100),
+                        new Point3D(0, -100, 100),
+                        new Point3D(100, -100, 100)),  // upper right
                 new Triangle(new Color(java.awt.Color.RED),
-                        new Point3D(-100, 0, 100), new Point3D(0, 100, 100), new Point3D(-100, 100, 100)),    // lower left
+                        new Point3D(-100, 0, 100),
+                        new Point3D(0, 100, 100),
+                        new Point3D(-100, 100, 100)),  // lower left
                 new Triangle(new Color(java.awt.Color.GREEN),
-                        new Point3D(-100, 0, 100), new Point3D(0, -100, 100), new Point3D(-100, -100, 100))); // upper left
+                        new Point3D(-100, 0, 100),
+                        new Point3D(0, -100, 100),
+                        new Point3D(-100, -100, 100))); // upper left
 
         ImageWriter imageWriter = new ImageWriter("color render test", 500, 500, 500, 500);
         Render render = new Render(imageWriter, scene);
-
         render.renderImage();
         render.printGrid(50, java.awt.Color.WHITE);
         render.writeToImage();

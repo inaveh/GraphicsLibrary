@@ -36,8 +36,8 @@ public class Tube extends RadialGeometry {
      * @param _axisRay  axis ray
      */
     public Tube(Color _emission, double _radius, Ray _axisRay) {
-        super(_emission, _radius);
-        this._axisRay = _axisRay;
+        this(_radius, _axisRay);
+        this._emission = _emission;
     }
 
     /**

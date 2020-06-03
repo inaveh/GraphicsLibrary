@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.isZero;
@@ -21,6 +22,7 @@ public class Cylinder extends Tube {
      * Cylinder constructor
      *
      * @param _radius radius
+     * @param _ray    ray
      * @param _height the height
      */
     public Cylinder(Double _radius, Ray _ray, Double _height) {
@@ -31,26 +33,27 @@ public class Cylinder extends Tube {
     /**
      * Cylinder constructor with color
      *
-     * @param _emissionLight
-     * @param radius
-     * @param ray
-     * @param _height
+     * @param _emission emission
+     * @param radius    radius
+     * @param ray       ray
+     * @param _height   the height
      */
-    public Cylinder(Color _emissionLight, double radius, Ray ray, double _height) {
-        super(_emissionLight, radius, ray);
-        this._height = _height;
+    public Cylinder(Color _emission, double radius, Ray ray, double _height) {
+        this(radius, ray, _height);
+        this._emission = _emission;
     }
 
     /**
      * Cylinder constructor with color and material
      *
-     * @param _emissionLight
-     * @param radius
-     * @param ray
-     * @param _height
+     * @param _material material
+     * @param _emission emission
+     * @param radius    radius
+     * @param ray       ray
+     * @param _height   the height
      */
-    public Cylinder(Material _material, Color _emissionLight, double radius, Ray ray, double _height) {
-        this(_emissionLight, radius, ray, _height);
+    public Cylinder(Material _material, Color _emission, double radius, Ray ray, double _height) {
+        this(_emission, radius, ray, _height);
         this._material = _material;
     }
 
@@ -95,6 +98,13 @@ public class Cylinder extends Tube {
 
     @Override
     public List<GeoPoint> findIntersections(Ray ray) {
-        return super.findIntersections(ray);
+        List<GeoPoint> intersections = super.findIntersections(ray);
+        List<GeoPoint> result = new LinkedList<>();
+        if (intersections != null) {
+            for (GeoPoint geoPoint : intersections)
+                result.add(new GeoPoint(this, geoPoint.point));
+            return result;
+        }
+        return null;
     }
 }

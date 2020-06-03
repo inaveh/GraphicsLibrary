@@ -10,6 +10,8 @@ import primitives.Vector;
 public class DirectionalLight extends Light implements LightSource {
     private Vector _direction;
 
+    // ****************************** Constructors *****************************//
+
     /**
      * constructor directional light
      *
@@ -20,6 +22,8 @@ public class DirectionalLight extends Light implements LightSource {
         super(_intensity);
         this._direction = _direction;
     }
+
+    // ****************************** Overrides *****************************//
 
     @Override
     public Color getIntensity(Point3D p) {

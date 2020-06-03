@@ -1,7 +1,9 @@
 package geometries;
 
 import java.util.List;
+
 import primitives.*;
+
 import static primitives.Util.*;
 
 /**
@@ -82,23 +84,27 @@ public class Polygon extends Geometry {
 
     /**
      * polygon constructor with color
+     *
      * @param _emission emission
-     * @param _vertices vertices
+     * @param vertices vertices
      */
-    public Polygon(Color _emission, List<Point3D> _vertices) {
-        super(_emission);
-        this._vertices = _vertices;
+    public Polygon(Color _emission, Point3D... vertices) {
+        this(vertices);
+        this._emission = _emission;
     }
 
     /**
      * polygon constructor with color and material
+     *
      * @param _emission emission
-     * @param _vertices vertices
+     * @param vertices vertices
      */
-    public Polygon(Material _material, Color _emission, List<Point3D> _vertices) {
-        this( _emission,_vertices);
-        this._material=_material;
+    public Polygon(Material _material, Color _emission, Point3D... vertices) {
+        this(_emission, vertices);
+        this._material = _material;
     }
+
+    // ****************************** Overrides *****************************//
 
     @Override
     public Vector getNormal(Point3D point) {
@@ -107,6 +113,25 @@ public class Polygon extends Geometry {
 
     @Override
     public List<GeoPoint> findIntersections(Ray ray) {
-        return null;
+        List<GeoPoint> intersection = _plane.findIntersections(ray);
+        if (intersection == null)
+            return null;
+        Point3D p0 = ray.getP0();
+        Vector v = ray.getDir();
+        Vector v1 = _vertices.get(1).subtract(p0);
+        Vector v2 = _vertices.get(0).subtract(p0);
+        double sign = v.dotProduct(v1.crossProduct(v2));
+        if (isZero(sign))
+            return null;
+        boolean positive = sign > 0;
+        for (int i = _vertices.size() - 1; i > 0; --i) {
+            v1 = v2;
+            v2 = _vertices.get(i).subtract(p0);
+            sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+            if (isZero(sign)) return null;
+            if (positive != (sign > 0)) return null;
+        }
+        intersection.get(0).geometry = this;
+        return intersection;
     }
 }

@@ -49,6 +49,7 @@ public class Plane extends Geometry {
     /**
      * Plane constructor by 3 Points with color and material
      *
+     * @param _material material
      * @param _emission emission
      * @param p1        point3d
      * @param p2        point3d
@@ -144,14 +145,11 @@ public class Plane extends Geometry {
         } catch (IllegalArgumentException e) {
             return null;
         }
-
         // check if ray parallel or include the plane (0 point)
         double nv = _normal.dotProduct(v);
         if (isZero(nv))
             return null;
-
         double t = alignZero(_normal.dotProduct(p0Q) / nv);
-
         if (t <= 0)
             return null;
         return List.of(new GeoPoint(this, p0.add(v.scale(t))));

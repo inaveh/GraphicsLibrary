@@ -51,6 +51,7 @@ public abstract class RadialGeometry extends Geometry {
      * @param other radialGeometry instance
      */
     public RadialGeometry(RadialGeometry other) {
+        super(other._emission, other._material);
         this._radius = other._radius;
     }
 

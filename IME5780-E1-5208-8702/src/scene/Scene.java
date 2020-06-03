@@ -8,6 +8,8 @@ import geometries.Geometries;
 import geometries.Intersectable;
 import primitives.Color;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -126,21 +128,29 @@ public class Scene {
         this._distance = _distance;
     }
 
+    // ****************************** Functions *****************************//
+
     /**
      * add func for new geometries
      *
      * @param geometries geo
      */
     public void addGeometries(Intersectable... geometries) {
-        _geometries.add(geometries);
+        for (Intersectable geometry : geometries) {
+            _geometries.add(geometry);
+        }
     }
 
     /**
      * func to add lights
      *
-     * @param _lightSource light source
+     * @param _lights light source
      */
-    public void addLights(LightSource _lightSource) {
-        this._lights.add(_lightSource);
+
+    public void addLights(LightSource _lights) {
+        if (this._lights == null) {
+            this._lights = new LinkedList<>();
+        }
+        this._lights.add(_lights);
     }
 }

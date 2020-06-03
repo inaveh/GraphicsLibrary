@@ -17,11 +17,24 @@ public class Camera {
     private Vector vup;
     private Vector vright;
 
-    public Camera(Point3D place, Vector vto, Vector vup, Vector vright) {
-        this.place = place;
-        this.vto = vto;
-        this.vup = vup;
-        this.vright = vright;
+
+    // ****************************** Constructors *****************************//
+
+    /**
+     * constructor for camera with params
+     *
+     * @param _place place of camera
+     * @param _vto   forward vector
+     * @param _vup   up vector
+     */
+    public Camera(Point3D _place, Vector _vto, Vector _vup) {
+        if (isZero(_vto.dotProduct(_vup))) {
+            place = _place;
+            vto = _vto.normalized();
+            vup = _vup.normalized();
+            vright = new Vector(_vto.crossProduct(_vup));
+        } else
+            throw new IllegalArgumentException("Illegal args");
     }
 
     // ****************************** Getters *****************************//
@@ -62,24 +75,7 @@ public class Camera {
         return vright;
     }
 
-    // ****************************** Constructors *****************************//
-
-    /**
-     * constructor for camera with params
-     *
-     * @param _place place of camera
-     * @param _vto   forward vector
-     * @param _vup   up vector
-     */
-    public Camera(Point3D _place, Vector _vto, Vector _vup) {
-        if (isZero(_vto.dotProduct(_vup))) {
-            place = _place;
-            vto = _vto.normalized();
-            vup = _vup.normalized();
-            vright = new Vector(_vto.crossProduct(_vup));
-        } else
-            throw new IllegalArgumentException("Illegal args");
-    }
+    // ****************************** Functions *****************************//
 
     /**
      * func constructRayThroughPixel

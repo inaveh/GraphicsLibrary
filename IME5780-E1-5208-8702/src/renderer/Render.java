@@ -20,6 +20,7 @@ public class Render {
     private ImageWriter _imageWriter;
     private Scene _scene;
 
+    // ********************** Constructors ********************** //
     /**
      * constructor render
      *
@@ -90,12 +91,6 @@ public class Render {
         }
         return result;
     }
-
-    /*private Color calcColor(GeoPoint intersection) {
-        Color color = _scene.getAmbientLight().getIntensity();
-        color = color.add(intersection.geometry.getEmission());
-        return color;
-    }*/
 
     /**
      * Prints a grid on the background of our image

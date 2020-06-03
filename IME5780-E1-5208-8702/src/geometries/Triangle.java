@@ -54,6 +54,8 @@ public class Triangle extends Polygon {
         this._material = _material;
     }
 
+    // ****************************** Overrides *****************************//
+
     @Override
     public List<GeoPoint> findIntersections(Ray ray) {
         List<GeoPoint> intersections = _plane.findIntersections(ray);

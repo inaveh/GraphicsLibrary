@@ -1,9 +1,14 @@
 package primitives;
 
+/**
+ * class Material for material of geometries
+ */
 public class Material {
     private final double _kD;
     private final double _kS;
     private final int _nShininess;
+
+    // ****************************** Constructors *****************************//
 
     /**
      * Material constructor
@@ -17,6 +22,8 @@ public class Material {
         this._kS = _kS;
         this._nShininess = _nShininess;
     }
+
+    // ****************************** Getters *****************************//
 
     /**
      * material getter
