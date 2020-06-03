@@ -1,8 +1,6 @@
 package geometries;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -16,16 +14,44 @@ import static primitives.Util.isZero;
  */
 public class Triangle extends Polygon {
 
-    // ****************************** Constructors *****************************/
+    //****************************** Constructors *****************************/
+
     /**
      * Triangle constructor by super
      *
-     * @param a one point
-     * @param b one point
-     * @param c one point
+     * @param p1 one point
+     * @param p2 one point
+     * @param p3 one point
      */
-    public Triangle(Point3D a, Point3D b, Point3D c) {
-        super(a, b, c);
+    public Triangle(Point3D p1, Point3D p2, Point3D p3) {
+        super(p1, p2, p3);
+    }
+
+    /**
+     * triangle constructor with color
+     *
+     * @param _emission emission color
+     * @param p1        ver of triangle
+     * @param p2        ver of triangle
+     * @param p3        ver of triangle
+     */
+    public Triangle(Color _emission, Point3D p1, Point3D p2, Point3D p3) {
+        this(p1, p2, p3);
+        this._emission = _emission;
+    }
+
+    /**
+     * triangle constructor with color and material
+     *
+     * @param _material material
+     * @param _emission emission color
+     * @param p1        ver of triangle
+     * @param p2        ver of triangle
+     * @param p3        ver of triangle
+     */
+    public Triangle(Color _emission, Material _material, Point3D p1, Point3D p2, Point3D p3) {
+        this(_emission, p1, p2, p3);
+        this._material = _material;
     }
 
     @Override

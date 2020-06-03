@@ -2,27 +2,21 @@ package elements;
 
 import primitives.Color;
 
+import java.awt.*;
+
 /**
  * class for ambient light
  * to add light for our image
+ *
  * @author AhronS, IsraelN
  */
-public class AmbientLight {
-    private Color _intensity;
+public class AmbientLight extends Light {
 
     /**
      * constructor ambient light
      */
     public AmbientLight(Color i, double k) {
-        _intensity = i.scale(k);
+        super(i.scale(k));
     }
 
-    /**
-     * getter for intensity
-     *
-     * @return intensity
-     */
-    public Color getIntensity() {
-        return _intensity;
-    }
 }

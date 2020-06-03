@@ -1,5 +1,8 @@
 package geometries;
 
+import primitives.Color;
+import primitives.Material;
+
 /**
  * Class RadialGeometries implements Geometry
  *
@@ -8,7 +11,7 @@ package geometries;
 public abstract class RadialGeometry extends Geometry {
     private double _radius;
 
-    // ****************************** Constructors *****************************/
+    //****************************** Constructors *****************************/
 
     /**
      * RadialGeometry constructor
@@ -17,6 +20,29 @@ public abstract class RadialGeometry extends Geometry {
      */
     public RadialGeometry(double _radius) {
         this._radius = _radius;
+    }
+
+    /**
+     * radial geometry constructor with color
+     *
+     * @param _emission emission
+     * @param _radius   radius
+     */
+    public RadialGeometry(Color _emission, double _radius) {
+        super(_emission);
+        this._radius = _radius;
+    }
+
+    /**
+     * radial geometry constructor with color and material
+     *
+     * @param _material material
+     * @param _emission emission
+     * @param _radius   radius
+     */
+    public RadialGeometry(Material _material, Color _emission, double _radius) {
+        this(_emission, _radius);
+        this._material = _material;
     }
 
     /**

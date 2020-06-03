@@ -2,9 +2,14 @@ package scene;
 
 import elements.AmbientLight;
 import elements.Camera;
+import elements.DirectionalLight;
+import elements.LightSource;
 import geometries.Geometries;
 import geometries.Intersectable;
 import primitives.Color;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * class for scene for build scene
@@ -18,17 +23,18 @@ public class Scene {
     private Geometries _geometries;
     private Camera _camera;
     private double _distance;
-
+    private List<LightSource> _lights;
     // ****************************** Constructors *****************************//
 
     /**
-     * constructoe for scene
+     * constructor for scene
      *
      * @param name of the scene
      */
     public Scene(String name) {
         _name = name;
         _geometries = new Geometries();
+        _lights = new LinkedList<LightSource>();
     }
 
     // ****************************** Getters *****************************//
@@ -87,6 +93,9 @@ public class Scene {
         return _distance;
     }
 
+    public List<LightSource> getLights() {
+        return _lights;
+    }
     // ****************************** Setters *****************************//
 
     /**
@@ -124,5 +133,14 @@ public class Scene {
      */
     public void addGeometries(Intersectable... geometries) {
         _geometries.add(geometries);
+    }
+
+    /**
+     * func to add lights
+     *
+     * @param _lightSource light source
+     */
+    public void addLights(LightSource _lightSource) {
+        this._lights.add(_lightSource);
     }
 }

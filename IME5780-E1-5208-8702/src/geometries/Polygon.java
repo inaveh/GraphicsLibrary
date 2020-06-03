@@ -80,6 +80,26 @@ public class Polygon extends Geometry {
         }
     }
 
+    /**
+     * polygon constructor with color
+     * @param _emission emission
+     * @param _vertices vertices
+     */
+    public Polygon(Color _emission, List<Point3D> _vertices) {
+        super(_emission);
+        this._vertices = _vertices;
+    }
+
+    /**
+     * polygon constructor with color and material
+     * @param _emission emission
+     * @param _vertices vertices
+     */
+    public Polygon(Material _material, Color _emission, List<Point3D> _vertices) {
+        this( _emission,_vertices);
+        this._material=_material;
+    }
+
     @Override
     public Vector getNormal(Point3D point) {
         return _plane.getNormal();

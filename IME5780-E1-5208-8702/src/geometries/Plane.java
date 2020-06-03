@@ -1,8 +1,6 @@
 package geometries;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -36,6 +34,32 @@ public class Plane extends Geometry {
     }
 
     /**
+     * Plane constructor by 3 Points and color
+     *
+     * @param _emission emission
+     * @param p1        point3d
+     * @param p2        point3d
+     * @param p3        point3d
+     */
+    public Plane(Color _emission, Point3D p1, Point3D p2, Point3D p3) {
+        this(p1, p2, p3);
+        this._emission = _emission;
+    }
+
+    /**
+     * Plane constructor by 3 Points with color and material
+     *
+     * @param _emission emission
+     * @param p1        point3d
+     * @param p2        point3d
+     * @param p3        point3d
+     */
+    public Plane(Material _material, Color _emission, Point3D p1, Point3D p2, Point3D p3) {
+        this(_emission, p1, p2, p3);
+        this._material = _material;
+    }
+
+    /**
      * Plane constructor by normal and point
      *
      * @param point3D point
@@ -46,7 +70,33 @@ public class Plane extends Geometry {
         this._normal = _normal;
     }
 
-    // ****************************** Getters *****************************/
+    /**
+     * Plane constructor by normal and point and color
+     *
+     * @param _emission _emission
+     * @param point3D   point
+     * @param _normal   normal
+     */
+    public Plane(Color _emission, Point3D point3D, Vector _normal) {
+        this(point3D, _normal);
+        this._emission = _emission;
+    }
+
+    /**
+     * Plane constructor by normal and point with color and material
+     *
+     * @param _material material
+     * @param _emission _emission
+     * @param point3D   point
+     * @param _normal   normal
+     */
+    public Plane(Material _material, Color _emission, Point3D point3D, Vector _normal) {
+        this(_emission, point3D, _normal);
+        this._material = _material;
+    }
+
+
+    //****************************** Getters *****************************/
 
     /**
      * Plane getter

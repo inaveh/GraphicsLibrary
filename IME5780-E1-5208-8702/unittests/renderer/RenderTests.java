@@ -5,8 +5,6 @@ import org.junit.Test;
 import elements.*;
 import geometries.*;
 import primitives.*;
-import renderer.ImageWriter;
-import renderer.Render;
 import scene.Scene;
 
 /**
@@ -28,7 +26,7 @@ public class RenderTests {
         scene.setBackground(new Color(75, 127, 90));
         scene.setAmbientLight(new AmbientLight(new Color(255, 191, 191), 1));
 
-        scene.addGeometries(new Sphere(50, new Point3D(0, 0, 100)));
+        scene.addGeometries(new Sphere(50d, new Point3D(0, 0, 100)));
 
         scene.addGeometries(
                 new Triangle(new Point3D(100, 0, 100), new Point3D(0, 100, 100), new Point3D(100, 100, 100)),
@@ -52,7 +50,7 @@ public class RenderTests {
         scene.setBackground(Color.BLACK);
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.2));
 
-        scene.addGeometries(new Sphere(50, new Point3D(0, 0, 100)));
+        scene.addGeometries(new Sphere(50d, new Point3D(0, 0, 100)));
 
         scene.addGeometries(
                 new Triangle(new Color(java.awt.Color.BLUE),

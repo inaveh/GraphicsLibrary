@@ -17,6 +17,13 @@ public class Camera {
     private Vector vup;
     private Vector vright;
 
+    public Camera(Point3D place, Vector vto, Vector vup, Vector vright) {
+        this.place = place;
+        this.vto = vto;
+        this.vup = vup;
+        this.vright = vright;
+    }
+
     // ****************************** Getters *****************************//
 
     /**

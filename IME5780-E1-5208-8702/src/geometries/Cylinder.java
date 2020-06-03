@@ -1,8 +1,6 @@
 package geometries;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ import static primitives.Util.isZero;
 public class Cylinder extends Tube {
     private Double _height;
 
-    // ****************************** Constructors *****************************/
+    //****************************** Constructors *****************************/
 
     /**
      * Cylinder constructor
@@ -30,7 +28,34 @@ public class Cylinder extends Tube {
         this._height = _height;
     }
 
-    // ****************************** Getters *****************************/
+    /**
+     * Cylinder constructor with color
+     *
+     * @param _emissionLight
+     * @param radius
+     * @param ray
+     * @param _height
+     */
+    public Cylinder(Color _emissionLight, double radius, Ray ray, double _height) {
+        super(_emissionLight, radius, ray);
+        this._height = _height;
+    }
+
+    /**
+     * Cylinder constructor with color and material
+     *
+     * @param _emissionLight
+     * @param radius
+     * @param ray
+     * @param _height
+     */
+    public Cylinder(Material _material, Color _emissionLight, double radius, Ray ray, double _height) {
+        this(_emissionLight, radius, ray, _height);
+        this._material = _material;
+    }
+
+
+    //****************************** Getters *****************************/
 
     /**
      * Cylinder getter
