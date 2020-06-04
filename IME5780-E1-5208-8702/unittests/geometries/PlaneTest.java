@@ -48,10 +48,12 @@ public class PlaneTest {
         Point3D p111 = new Point3D(1, 1, 1);
 
         Plane plane = new Plane(p100, p010, p000);
+        List<Intersectable.GeoPoint> resultP110 = List.of(new Intersectable.GeoPoint(plane,p110));
+        List<Intersectable.GeoPoint> resultP000 = List.of(new Intersectable.GeoPoint(plane,p000));
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Ray is neither orthogonal nor parallel (1 points)
-        assertEquals("bad findIntersections of plane", List.of(p110), plane.findIntersections(new Ray(p001, new Vector(1, 1, -1))));
+        assertEquals("bad findIntersections of plane", resultP110, plane.findIntersections(new Ray(p001, new Vector(1, 1, -1))));
 
         // TC02: Ray is neither orthogonal nor parallel (0 points)
         assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(p001, new Vector(1, 1, 2))));
@@ -68,7 +70,7 @@ public class PlaneTest {
         // **** Group: Ray is orthogonal to the plane
 
         // TC05: Ray is before the plane (1 point)
-        assertEquals("bad findIntersections of plane", List.of(p000), plane.findIntersections(new Ray(new Point3D(0, 0, -1), new Vector(p001))));
+        assertEquals("bad findIntersections of plane", resultP000, plane.findIntersections(new Ray(new Point3D(0, 0, -1), new Vector(p001))));
 
         // TC06: Ray is in the plane (0 point)
         assertNull("bad findIntersections of plane", plane.findIntersections(new Ray(p000, new Vector(p001))));

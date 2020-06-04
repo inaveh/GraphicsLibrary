@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static primitives.Util.isZero;
@@ -74,8 +75,14 @@ public class Triangle extends Polygon {
         double s3 = v.dotProduct(v3.crossProduct(v1));
         if (isZero(s3)) return null;
 
-        if ((s1 > 0 && s2 > 0 && s3 > 0) || (s1 < 0 && s2 < 0 && s3 < 0))
-            return intersections;
+        if ((s1 > 0 && s2 > 0 && s3 > 0) || (s1 < 0 && s2 < 0 && s3 < 0)) {
+            List<GeoPoint> result = new ArrayList<>();
+            for (GeoPoint geo : intersections) {
+                result.add(new GeoPoint(this, geo.point));
+            }
+            result.get(0).geometry = this;
+            return result;
+        }
         return null;
     }
 }

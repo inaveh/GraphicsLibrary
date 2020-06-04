@@ -45,7 +45,8 @@ public class TriangleTest {
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray's inside the triangle  (1 points)
-        assertEquals("bad findIntersections of triangle", List.of(new Point3D(0.3, 0.5, 0)), triangle.findIntersections(new Ray(p101, new Vector(-0.7, 0.5, -1))));
+        assertEquals("bad findIntersections of triangle", List.of(new Intersectable.GeoPoint(triangle,new Point3D(0.3, 0.5, 0))),
+                triangle.findIntersections(new Ray(p101,new Vector(-0.7, 0.5, -1))));
 
         // TC02: Ray's outside against edge (0 points)
         assertNull("bad findIntersections of triangle", triangle.findIntersections(new Ray(new Point3D(2, 2, 1), v00_1)));
