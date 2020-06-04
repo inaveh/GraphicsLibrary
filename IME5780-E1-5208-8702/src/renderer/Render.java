@@ -175,7 +175,6 @@ public class Render {
         return ip.scale(nl * kd);
     }
 
-
     /**
      * Function writeToImage produces unoptimized jpeg file of
      * the image according to pixel color matrix in the directory
@@ -184,7 +183,6 @@ public class Render {
     public void writeToImage() {
         _imageWriter.writeToImage();
     }
-
 
     private boolean sign(double val) {
         return (val > 0d);

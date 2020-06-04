@@ -20,8 +20,7 @@ public class SpotLightImproved extends SpotLight {
      * @param _kQ             kq
      */
     public SpotLightImproved(Color _colorIntensity, Point3D _position, Vector _direction, double _kC, double _kL, double _kQ, double _concentration) {
-        super(_colorIntensity, _position, _direction, _kC, _kL, _kQ);
-        this._concentration = _concentration;
+        super(_colorIntensity, _position, _direction, _kC, _kL, _kQ,_concentration);
     }
 
     @Override
