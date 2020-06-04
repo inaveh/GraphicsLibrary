@@ -14,6 +14,7 @@ import scene.Scene;
  *
  * @author Dan
  */
+
 public class RenderTests {
 
     /**
